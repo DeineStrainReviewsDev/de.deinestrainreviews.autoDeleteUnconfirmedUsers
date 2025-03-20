@@ -1,4 +1,13 @@
 # de.deinestrainreviews.autoDeleteUnconfirmedUsers
+![Codacy grade](https://img.shields.io/codacy/grade/2dc1e2bd09d54e89bd4a30b436b6a1e5?style=flat-square)
+![GitHub License](https://img.shields.io/github/license/DeineStrainReviewsDev/de.deinestrainreviews.autoDeleteUnconfirmedUsers?style=flat-square)
+![GitHub Created At](https://img.shields.io/github/created-at/DeineStrainReviewsDev/de.deinestrainreviews.autoDeleteUnconfirmedUsers?style=flat-square)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/w/DeineStrainReviewsDev/de.deinestrainreviews.autoDeleteUnconfirmedUsers?style=flat-square)
+![GitHub language count](https://img.shields.io/github/languages/count/DeineStrainReviewsDev/de.deinestrainreviews.autoDeleteUnconfirmedUsers?style=flat-square)
+![GitHub last commit](https://img.shields.io/github/last-commit/DeineStrainReviewsDev/de.deinestrainreviews.autoDeleteUnconfirmedUsers?display_timestamp=author&style=flat-square)
+![GitHub repo size](https://img.shields.io/github/repo-size/DeineStrainReviewsDev/de.deinestrainreviews.autoDeleteUnconfirmedUsers?style=flat-square)
+![GitHub top language](https://img.shields.io/github/languages/top/DeineStrainReviewsDev/de.deinestrainreviews.autoDeleteUnconfirmedUsers?style=flat-square)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/DeineStrainReviewsDev/de.deinestrainreviews.autoDeleteUnconfirmedUsers?style=flat-square)
 
 A WoltLab plugin that automatically deletes unconfirmed users after a configurable period.
 
