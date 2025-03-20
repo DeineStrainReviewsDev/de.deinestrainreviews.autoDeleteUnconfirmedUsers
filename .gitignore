@@ -1,0 +1,8 @@
+# Ignore all tar and tar.gz files
+*.tar
+*.tar.gz
+
+# Ignore Visual Studio Code settings and workspace files
+.vscode/
+.vscode/*
+*.code-workspace
