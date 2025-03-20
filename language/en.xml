@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/6.0/language.xsd" languagecode="en" languagename="English" countrycode="gb">
+	<import>
+		<category name="wcf.acp.option">
+			<item name="wcf.acp.option.enable_auto_delete_unconfirmed_users"><![CDATA[Enable automatic deletion of unconfirmed users]]></item>
+			<item name="wcf.acp.option.enable_auto_delete_unconfirmed_users.description"><![CDATA[If this option is enabled, unconfirmed users will be automatically deleted after the specified number of days.]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_days"><![CDATA[Days until unconfirmed users are deleted]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_days.description"><![CDATA[Number of days after which unconfirmed users are automatically deleted.]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_limit"><![CDATA[Users per cron job execution]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_limit.description"><![CDATA[Defines the maximum number of users that can be deleted per cron job execution to reduce server load.]]></item>
+		</category>
+	</import>
+</language>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/6.0/language.xsd" languagecode="de" languagename="Deutsch" countrycode="de">
+	<import>
+		<category name="wcf.acp.option">
+			<item name="wcf.acp.option.enable_auto_delete_unconfirmed_users"><![CDATA[Automatische Löschung unbestätigter Benutzer aktivieren]]></item>
+			<item name="wcf.acp.option.enable_auto_delete_unconfirmed_users.description"><![CDATA[Wenn diese Option aktiviert ist, werden unbestätigte Benutzer nach der eingestellten Anzahl an Tagen automatisch gelöscht.]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_days"><![CDATA[Tage bis zur Löschung unbestätigter Benutzer]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_days.description"><![CDATA[Anzahl der Tage, nach denen unbestätigte Benutzer automatisch gelöscht werden.]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_limit"><![CDATA[Benutzer pro Cronjob-Ausführung]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_limit.description"><![CDATA[Legt fest, wie viele Benutzer pro Cronjob-Ausführung gelöscht werden dürfen, um die Serverlast zu reduzieren.]]></item>
+		</category>
+	</import>
+</language>
