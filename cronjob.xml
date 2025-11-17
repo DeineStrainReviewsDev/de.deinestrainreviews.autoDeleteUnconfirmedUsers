@@ -3,7 +3,7 @@
 	<import>
 		<cronjob name="de.deinestrainreviews.autoDeleteUnconfirmedUsers">
 			<classname>wcf\system\cronjob\DeleteUnconfirmedUsersCronjob</classname>
-			<description>Cronjob zur automatischen Löschung unbestätigter Benutzer</description>
+			<description>Cronjob for automatic deletion of unconfirmed users</description>
 			<description language="de">Cronjob zur automatischen Löschung unbestätigter Benutzer</description>
 			<expression>0 0 * * *</expression>
 			<options>enable_auto_delete_unconfirmed_users</options>
