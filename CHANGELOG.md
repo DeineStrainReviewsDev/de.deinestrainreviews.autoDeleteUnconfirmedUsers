@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [1.1.2] - 2025-01-15
+## [1.2.0] - 2025-11-17
 
 ### ✨ Added
 - **Logging functionality for deleted users**
@@ -75,9 +75,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🔄 Technical Changes
 - **package.xml**
-  - Version bumped to 1.1.2
+  - Version bumped to 1.2.0
   - Added new PIP instructions: `sql`, `acpMenu`, `page`
-  - Added update instructions for version 1.1.2
+  - Added update instructions for version 1.2.0
 
 - **install.sql**
   - Added new database table `wcf1_deleted_unconfirmed_user_log`
@@ -198,7 +198,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 | Version | Date | Type | Main Change |
 |---------|------|------|-------------|
-| 1.1.2 | 2025-01-15 | Feature | Logging, email notifications, ACP page |
+| 1.2.0 | 2025-11-17 | Feature | Logging, email notifications, ACP page |
 | 1.1.1 | 2025-03-06 | Bugfix | Group membership logic corrected |
 | 1.1.0 | 2025-02-25 | Feature | Limit option for cronjob execution |
 | 1.0.0 | 2025-02-20 | Initial | Initial release |
@@ -224,4 +224,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-**Last Updated**: 2025-01-15
+**Last Updated**: 2025-11-17
