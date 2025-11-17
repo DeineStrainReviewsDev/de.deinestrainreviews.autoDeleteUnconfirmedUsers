@@ -6,6 +6,7 @@ use wcf\data\deleted\unconfirmed\user\log\DeletedUnconfirmedUserLogEditor;
 use wcf\data\user\UserAction;
 use wcf\data\user\group\UserGroup;
 use wcf\system\cronjob\AbstractCronjob;
+use wcf\system\database\util\PreparedStatementConditionBuilder;
 use wcf\system\email\Email;
 use wcf\system\email\mime\MimePartFacade;
 use wcf\system\email\mime\RecipientAwareTextMimePart;
@@ -112,12 +113,16 @@ class DeleteUnconfirmedUsersCronjob extends AbstractCronjob {
         }
         
         // Get all users in admin groups
+        $conditions = new PreparedStatementConditionBuilder();
+        $conditions->add('ug.groupID IN (?)', [$adminGroupIDs]);
+        $conditions->add('u.userID <> ?', [0]);
+        
         $sql = "SELECT DISTINCT u.userID, u.email, u.username
                 FROM wcf1_user_to_group ug
                 INNER JOIN wcf1_user u ON u.userID = ug.userID
-                WHERE ug.groupID IN (?) AND u.userID <> ?";
+                WHERE " . $conditions;
         $statement = WCF::getDB()->prepareStatement($sql);
-        $statement->execute([$adminGroupIDs, 0]);
+        $statement->execute($conditions->getParameters());
         $administrators = $statement->fetchAll(\PDO::FETCH_ASSOC);
 
         if (empty($administrators)) {
