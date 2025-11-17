@@ -12,7 +12,7 @@ A WoltLab Suite plugin that automatically deletes users who have not confirmed t
 - **Batch processing** with configurable limit (1-50 users per run) to reduce server load
 - **Safety checks** - Only deletes users in default groups (Everyone/Guests), never administrators or users with special groups
 
-### Logging & Notifications (v1.1.2+)
+### Logging & Notifications (v1.2.0+)
 - **Comprehensive logging** - All deleted users are logged to a database table
 - **ACP log page** - View all deleted users in the administration panel
 - **Email notifications** - Administrators receive email notifications when users are deleted
@@ -48,7 +48,7 @@ Maximum number of users that can be deleted per cronjob execution. This helps re
 
 ---
 
-## ACP Log Page (v1.1.2+)
+## ACP Log Page (v1.2.0+)
 
 The plugin provides a log page to view all deleted unconfirmed users:
 
@@ -65,7 +65,7 @@ All entries are sortable and the page supports pagination.
 
 ---
 
-## Email Notifications (v1.1.2+)
+## Email Notifications (v1.2.0+)
 
 Administrators automatically receive email notifications when users are deleted. The notifications include:
 - Number of deleted users
@@ -86,7 +86,7 @@ Administrators automatically receive email notifications when users are deleted.
 
 1. **Download the latest release**
    - Go to the [Releases](https://github.com/DeineStrainReviewsDev/de.deinestrainreviews.autoDeleteUnconfirmedUsers/releases) page
-   - Download the `.tar.gz` file (e.g., `de.deinestrainreviews.autoDeleteUnconfirmedUsers-1.1.2.tar.gz`)
+   - Download the `.tar.gz` file (e.g., `de.deinestrainreviews.autoDeleteUnconfirmedUsers-1.2.0.tar.gz`)
 
 2. **Install via ACP**
    - Go to **ACP → Package Management → Upload Package**
@@ -132,7 +132,7 @@ For a complete list of changes, see [CHANGELOG.md](CHANGELOG.md).
 
 ### Recent Versions
 
-**Version 1.1.2** (2025-01-15)
+**Version 1.2.0** (2025-11-17)
 - Added logging functionality
 - Added ACP log page
 - Added email notifications for administrators
@@ -226,4 +226,4 @@ Thanks to the WoltLab community for their excellent documentation and support.
 
 ---
 
-**Last Updated:** 2025-01-15
+**Last Updated:** 2025-11-17
