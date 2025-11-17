@@ -6,8 +6,8 @@
 		<packagename language="de">Automatische Löschung unbestätigter Benutzer</packagename>
 		<packagedescription>Automatically deletes users who have not confirmed their email within the specified time.</packagedescription>
 		<packagedescription language="de">Automatische Löschung von Benutzern, die ihre E-Mail nicht innerhalb der festgelegten Zeit bestätigt haben.</packagedescription>
-		<version>1.1.1</version>
-		<date>2025-03-06</date>
+		<version>1.1.2</version>
+		<date>2025-01-15</date>
 		<packageurl>https://deinestrainreviews.de</packageurl>
 		<license>https://www.gnu.org/licenses/gpl-3.0.txt</license>
 	</packageinformation>
@@ -33,6 +33,9 @@
 		<instruction type="option"/>
 	</instructions>
 	<instructions type="update" fromversion="1.1.0">
+		<instruction type="file" application="wcf"/>
+	</instructions>
+	<instructions type="update" fromversion="1.1.1">
 		<instruction type="file" application="wcf"/>
 	</instructions>
 </package>
