@@ -9,5 +9,20 @@
 			<item name="wcf.acp.option.auto_delete_unconfirmed_users_limit"><![CDATA[Benutzer pro Cronjob-Ausführung]]></item>
 			<item name="wcf.acp.option.auto_delete_unconfirmed_users_limit.description"><![CDATA[Legt fest, wie viele Benutzer pro Cronjob-Ausführung gelöscht werden dürfen, um die Serverlast zu reduzieren.]]></item>
 		</category>
+		<category name="wcf.acp.notification">
+			<item name="wcf.acp.notification.deletedUnconfirmedUsers.subject"><![CDATA[{count,plural,=1{# unbestätigter Benutzer wurde gelöscht} other{# unbestätigte Benutzer wurden gelöscht}}]]></item>
+			<item name="wcf.acp.notification.deletedUnconfirmedUsers.message"><![CDATA[Hallo {username},<br><br>es {count,plural,=1{wurde # unbestätigter Benutzer} other{wurden # unbestätigte Benutzer}} automatisch gelöscht.<br><br>Du kannst die Details im Log-Bereich des ACP einsehen.]]></item>
+		</category>
+		<category name="wcf.acp.menu.link">
+			<item name="wcf.acp.menu.link.deletedUnconfirmedUsersLog"><![CDATA[Gelöschte unbestätigte Benutzer]]></item>
+		</category>
+		<category name="wcf.acp.deletedUnconfirmedUsersLog">
+			<item name="wcf.acp.deletedUnconfirmedUsersLog.title"><![CDATA[Gelöschte unbestätigte Benutzer]]></item>
+			<item name="wcf.acp.deletedUnconfirmedUsersLog.username"><![CDATA[Benutzername]]></item>
+			<item name="wcf.acp.deletedUnconfirmedUsersLog.email"><![CDATA[E-Mail]]></item>
+			<item name="wcf.acp.deletedUnconfirmedUsersLog.registrationDate"><![CDATA[Registrierungsdatum]]></item>
+			<item name="wcf.acp.deletedUnconfirmedUsersLog.deletionDate"><![CDATA[Löschdatum]]></item>
+			<item name="wcf.acp.deletedUnconfirmedUsersLog.noEntries"><![CDATA[Es wurden noch keine unbestätigten Benutzer gelöscht.]]></item>
+		</category>
 	</import>
 </language>
