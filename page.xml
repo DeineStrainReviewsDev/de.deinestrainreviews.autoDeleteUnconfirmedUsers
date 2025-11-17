@@ -6,6 +6,8 @@
 			<controller>wcf\acp\page\DeletedUnconfirmedUsersLogPage</controller>
 			<application>wcf</application>
 			<isapplication>0</isapplication>
+			<name language="en">Deleted Unconfirmed Users</name>
+			<name language="de">Gelöschte unbestätigte Benutzer</name>
 		</page>
 	</import>
 </data>
