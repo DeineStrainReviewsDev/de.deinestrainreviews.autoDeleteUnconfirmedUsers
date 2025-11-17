@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/6.0/acpMenu.xsd">
 	<import>
-		<menuitem name="wcf.acp.menu.link.deletedUnconfirmedUsersLog" parent="wcf.acp.menu.link.user.management">
+		<acpmenuitem name="wcf.acp.menu.link.deletedUnconfirmedUsersLog" parent="wcf.acp.menu.link.user.management">
 			<controller>wcf\acp\page\DeletedUnconfirmedUsersLogPage</controller>
 			<permissions>admin.user.canManageUser</permissions>
 			<showorder>100</showorder>
-		</menuitem>
+		</acpmenuitem>
 	</import>
 </data>
 
