@@ -11,3 +11,6 @@
 *.bak
 package.xml.bak
 /tmp/
+
+# Ignore build script
+build.sh
