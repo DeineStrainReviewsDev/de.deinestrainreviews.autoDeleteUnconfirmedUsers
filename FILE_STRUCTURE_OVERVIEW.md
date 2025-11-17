@@ -89,13 +89,13 @@
 **Dokumentation:** https://docs.woltlab.com/6.1/php/database-objects/  
 **Status:** ✅ Korrekt - Erweitert `DatabaseObjectList`
 
-### 12. `files/lib/system/deleted/unconfirmed/user/DeletedUnconfirmedUserLogHandler.class.php`
-**Zuständigkeit:** Handler-Klasse für Log-Operationen  
-**Namespace:** `wcf\system\deleted\unconfirmed\user`  
-**Dateiname:** ✅ Korrekt - `DeletedUnconfirmedUserLogHandler.class.php`  
-**Verzeichnis:** ✅ Korrekt - `files/lib/system/deleted/unconfirmed/user/`  
-**Dokumentation:** https://docs.woltlab.com/6.1/getting-started/  
-**Status:** ⚠️ **ZU PRÜFEN** - Handler-Klassen sind nicht explizit dokumentiert, aber Namespace-Struktur ist korrekt
+### 12. `files/lib/data/deleted/unconfirmed/user/log/DeletedUnconfirmedUserLogEditor.class.php`
+**Zuständigkeit:** Editor-Klasse für Log-Einträge  
+**Namespace:** `wcf\data\deleted\unconfirmed\user\log`  
+**Dateiname:** ✅ Korrekt - `DeletedUnconfirmedUserLogEditor.class.php`  
+**Verzeichnis:** ✅ Korrekt - `files/lib/data/deleted/unconfirmed/user/log/`  
+**Dokumentation:** https://docs.woltlab.com/6.1/php/database-objects/  
+**Status:** ✅ Korrekt - Erweitert `DatabaseObjectEditor` (wie CronjobLogEditor im WoltLab Core)
 
 ### 13. `files/lib/acp/page/DeletedUnconfirmedUsersLogPage.class.php`
 **Zuständigkeit:** ACP-Seite für Log-Anzeige  
@@ -103,7 +103,7 @@
 **Dateiname:** ✅ Korrekt - `DeletedUnconfirmedUsersLogPage.class.php`  
 **Verzeichnis:** ✅ Korrekt - `files/lib/acp/page/`  
 **Dokumentation:** https://docs.woltlab.com/6.1/package/pip/page/  
-**Status:** ✅ Korrekt - Erweitert `AbstractAcpPage`
+**Status:** ✅ Korrekt - Erweitert `SortablePage` (wie CronjobLogListPage im WoltLab Core)
 
 ### 14. `files/lib/acp/page/DeletedUnconfirmedUsersLogPage.tpl`
 **Zuständigkeit:** Template für ACP-Seite  
@@ -116,11 +116,8 @@
 
 ## 🔍 Potenzielle Probleme / Zu Prüfende Punkte
 
-### ⚠️ Handler-Klasse Namespace
-**Datei:** `files/lib/system/deleted/unconfirmed/user/DeletedUnconfirmedUserLogHandler.class.php`  
-**Problem:** Handler-Klassen sind nicht explizit in der Dokumentation beschrieben  
-**Lösung:** Könnte alternativ in `files/lib/data/deleted/unconfirmed/user/log/` oder als statische Methoden in der Data-Klasse sein  
-**Empfehlung:** Prüfen ob Handler-Pattern in WoltLab üblich ist oder ob statische Methoden in Data-Klasse bevorzugt werden
+~~### ⚠️ Handler-Klasse Namespace~~  
+**Status:** ✅ **BEHOBEN** - Handler-Klasse wurde durch Standard `DatabaseObjectEditor` ersetzt
 
 ### ⚠️ Namespace-Struktur für "deleted/unconfirmed/user"
 **Aktuell:** `wcf\data\deleted\unconfirmed\user\log`  
