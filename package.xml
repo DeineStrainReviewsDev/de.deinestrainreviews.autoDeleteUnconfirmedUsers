@@ -23,7 +23,7 @@
 	</excludedpackages>
 	<instructions type="install">
 		<instruction type="cronjob"/>
-		<instruction type="sql"/>
+		<instruction type="database">database.php</instruction>
 		<instruction type="file" application="wcf">files.tar</instruction>
 		<instruction type="acpTemplate" application="wcf">acptemplates.tar</instruction>
 		<instruction type="language"/>
@@ -32,7 +32,7 @@
 		<instruction type="option"/>
 	</instructions>
 	<instructions type="update" fromversion="1.0.0">
-		<instruction type="sql"/>
+		<instruction type="database">database.php</instruction>
 		<instruction type="file" application="wcf"/>
 		<instruction type="acpTemplate" application="wcf"/>
 		<instruction type="language"/>
@@ -41,14 +41,14 @@
 		<instruction type="option"/>
 	</instructions>
 	<instructions type="update" fromversion="1.1.0">
-		<instruction type="sql"/>
+		<instruction type="database">database.php</instruction>
 		<instruction type="file" application="wcf"/>
 		<instruction type="acpTemplate" application="wcf"/>
 		<instruction type="acpMenu"/>
 		<instruction type="page"/>
 	</instructions>
 	<instructions type="update" fromversion="1.1.1">
-		<instruction type="sql"/>
+		<instruction type="database">database.php</instruction>
 		<instruction type="file" application="wcf"/>
 		<instruction type="acpTemplate" application="wcf"/>
 		<instruction type="language"/>
@@ -56,7 +56,7 @@
 		<instruction type="page"/>
 	</instructions>
 	<instructions type="update" fromversion="1.2.0">
-		<instruction type="sql"/>
+		<instruction type="database">database.php</instruction>
 		<instruction type="file" application="wcf"/>
 		<instruction type="acpTemplate" application="wcf"/>
 		<instruction type="language"/>
