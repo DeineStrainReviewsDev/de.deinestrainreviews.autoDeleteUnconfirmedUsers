@@ -2,9 +2,8 @@
 
 namespace wcf\acp\page;
 
-use wcf\acp\page\AbstractAcpPage;
 use wcf\data\deleted\unconfirmed\user\log\DeletedUnconfirmedUserLogList;
-use wcf\system\WCF;
+use wcf\page\SortablePage;
 
 /**
  * Shows the log of deleted unconfirmed users.
@@ -13,8 +12,10 @@ use wcf\system\WCF;
  * @copyright 2025 DeineStrainReviews.de
  * @license https://www.gnu.org/licenses/gpl-3.0.txt
  * @package de.deinestrainreviews.autoDeleteUnconfirmedUsers
+ * 
+ * @property DeletedUnconfirmedUserLogList $objectList
  */
-class DeletedUnconfirmedUsersLogPage extends AbstractAcpPage {
+class DeletedUnconfirmedUsersLogPage extends SortablePage {
 	/**
 	 * @inheritDoc
 	 */
@@ -26,32 +27,28 @@ class DeletedUnconfirmedUsersLogPage extends AbstractAcpPage {
 	public $neededPermissions = ['admin.user.canManageUser'];
 	
 	/**
-	 * List of log entries
-	 * 
-	 * @var DeletedUnconfirmedUserLogList
+	 * @inheritDoc
 	 */
-	public $logList;
+	public $itemsPerPage = 100;
 	
 	/**
 	 * @inheritDoc
 	 */
-	public function readData() {
-		parent::readData();
-		
-		$this->logList = new DeletedUnconfirmedUserLogList();
-		$this->logList->sqlOrderBy = 'deletionDate DESC';
-		$this->logList->readObjects();
-	}
+	public $defaultSortField = 'deletionDate';
 	
 	/**
 	 * @inheritDoc
 	 */
-	public function assignVariables() {
-		parent::assignVariables();
-		
-		WCF::getTPL()->assign([
-			'logEntries' => $this->logList->getObjects()
-		]);
-	}
+	public $defaultSortOrder = 'DESC';
+	
+	/**
+	 * @inheritDoc
+	 */
+	public $validSortFields = ['logID', 'username', 'email', 'registrationDate', 'deletionDate'];
+	
+	/**
+	 * @inheritDoc
+	 */
+	public $objectListClassName = DeletedUnconfirmedUserLogList::class;
 }
 
