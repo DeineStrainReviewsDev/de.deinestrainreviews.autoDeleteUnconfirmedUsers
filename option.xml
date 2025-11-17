@@ -29,6 +29,22 @@ auto_delete_unconfirmed_users_limit</enableoptions>
 				<maxvalue>50</maxvalue>
 				<disableAutocomplete>1</disableAutocomplete>
 			</option>
+			<option name="autodelete_log_anonymous">
+				<categoryname>user.register</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>1</defaultvalue>
+				<showorder>8</showorder>
+			</option>
+			<option name="autodelete_log_retention_period">
+				<categoryname>user.register</categoryname>
+				<optiontype>integer</optiontype>
+				<defaultvalue>14</defaultvalue>
+				<enableoptions>!autodelete_log_anonymous</enableoptions>
+				<showorder>9</showorder>
+				<minvalue>0</minvalue>
+				<maxvalue>365</maxvalue>
+				<disableAutocomplete>1</disableAutocomplete>
+			</option>
 		</options>
 	</import>
 </data>

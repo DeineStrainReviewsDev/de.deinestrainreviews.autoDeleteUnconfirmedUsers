@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/acpMenu.xsd">
+	<import>
+		<menuitem identifier="wcf.acp.menu.log.autoDelete" parent="wcf.acp.menu.log">
+			<title language="de">Auto Delete Logs</title>
+			<title language="en">Auto Delete Logs</title>
+			<link>AutoDeleteLog{@$controller}</link>
+			<icon name="list" />
+			<permissions>admin.user.canManageUser</permissions>
+		</menuitem>
+	</import>
+</data>
+

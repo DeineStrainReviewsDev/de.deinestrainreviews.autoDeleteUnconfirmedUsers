@@ -8,6 +8,19 @@
 			<item name="wcf.acp.option.auto_delete_unconfirmed_users_days.description"><![CDATA[Anzahl der Tage, nach denen unbestätigte Benutzer automatisch gelöscht werden.]]></item>
 			<item name="wcf.acp.option.auto_delete_unconfirmed_users_limit"><![CDATA[Benutzer pro Cronjob-Ausführung]]></item>
 			<item name="wcf.acp.option.auto_delete_unconfirmed_users_limit.description"><![CDATA[Legt fest, wie viele Benutzer pro Cronjob-Ausführung gelöscht werden dürfen, um die Serverlast zu reduzieren.]]></item>
+			<item name="wcf.acp.option.autodelete_log_anonymous"><![CDATA[Logs anonym speichern (Empfohlen)]]></item>
+			<item name="wcf.acp.option.autodelete_log_anonymous.description"><![CDATA[Wenn 'Ja' (Standard), wird nur die Anzahl der gelöschten Benutzer protokolliert (DSGVO-sicher). Wenn 'Nein', werden userID, username und email protokolliert (Hohes DSGVO-Risiko!).]]></item>
+			<item name="wcf.acp.option.autodelete_log_retention_period"><![CDATA[Vollständige Logs aufbewahren (Tage)]]></item>
+			<item name="wcf.acp.option.autodelete_log_retention_period.description"><![CDATA[Wie viele Tage sollen die vollständigen Logs (mit E-Mail/Username) aufbewahrt werden? Nach dieser Frist MÜSSEN sie aus Datenschutzgründen automatisch gelöscht werden. Ein Wert von 0 (nie löschen) wird dringend abgeraten.]]></item>
+		</category>
+		<category name="wcf.acp.menu">
+			<item name="wcf.acp.menu.link.log.autoDelete"><![CDATA[Auto Delete Logs]]></item>
+		</category>
+		<category name="wcf.acp.log.autoDelete">
+			<item name="wcf.acp.log.autoDelete.type"><![CDATA[Typ]]></item>
+			<item name="wcf.acp.log.autoDelete.executionTime"><![CDATA[Ausführungszeit]]></item>
+			<item name="wcf.acp.log.autoDelete.fullEntry"><![CDATA[Vollständiger Eintrag]]></item>
+			<item name="wcf.acp.log.autoDelete.anonymousEntry"><![CDATA[Anonym gelöschte Benutzer]]></item>
 		</category>
 	</import>
 </language>

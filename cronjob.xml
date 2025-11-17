@@ -8,5 +8,11 @@
 			<expression>0 0 * * *</expression>
 			<options>enable_auto_delete_unconfirmed_users</options>
 		</cronjob>
+		<cronjob name="de.deinestrainreviews.autoDeleteLogCleanup">
+			<classname>wcf\system\cronjob\AutoDeleteLogCleanupCronjob</classname>
+			<description>Cronjob zur automatischen Löschung alter vollständiger Logs</description>
+			<description language="de">Cronjob zur automatischen Löschung alter vollständiger Logs</description>
+			<expression>0 2 * * *</expression>
+		</cronjob>
 	</import>
 </data>
