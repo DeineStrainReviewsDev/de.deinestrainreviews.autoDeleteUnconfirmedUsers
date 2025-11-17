@@ -23,42 +23,46 @@
 	</excludedpackages>
 	<instructions type="install">
 		<instruction type="cronjob"/>
-		<instruction type="database">database.php</instruction>
 		<instruction type="file" application="wcf">files.tar</instruction>
 		<instruction type="acpTemplate" application="wcf">acptemplates.tar</instruction>
+		<instruction type="database">acp/database/install_de.deinestrainreviews.autoDeleteUnconfirmedUsers.php</instruction>
 		<instruction type="language"/>
 		<instruction type="acpMenu"/>
 		<instruction type="page"/>
 		<instruction type="option"/>
 	</instructions>
 	<instructions type="update" fromversion="1.0.0">
-		<instruction type="database">database.php</instruction>
+		<instruction type="fileDelete"/>
 		<instruction type="file" application="wcf"/>
 		<instruction type="acpTemplate" application="wcf"/>
+		<instruction type="database">acp/database/install_de.deinestrainreviews.autoDeleteUnconfirmedUsers.php</instruction>
 		<instruction type="language"/>
 		<instruction type="acpMenu"/>
 		<instruction type="page"/>
 		<instruction type="option"/>
 	</instructions>
 	<instructions type="update" fromversion="1.1.0">
-		<instruction type="database">database.php</instruction>
+		<instruction type="fileDelete"/>
 		<instruction type="file" application="wcf"/>
 		<instruction type="acpTemplate" application="wcf"/>
+		<instruction type="database">acp/database/install_de.deinestrainreviews.autoDeleteUnconfirmedUsers.php</instruction>
 		<instruction type="acpMenu"/>
 		<instruction type="page"/>
 	</instructions>
 	<instructions type="update" fromversion="1.1.1">
-		<instruction type="database">database.php</instruction>
+		<instruction type="fileDelete"/>
 		<instruction type="file" application="wcf"/>
 		<instruction type="acpTemplate" application="wcf"/>
+		<instruction type="database">acp/database/install_de.deinestrainreviews.autoDeleteUnconfirmedUsers.php</instruction>
 		<instruction type="language"/>
 		<instruction type="acpMenu"/>
 		<instruction type="page"/>
 	</instructions>
 	<instructions type="update" fromversion="1.2.0">
-		<instruction type="database">database.php</instruction>
+		<instruction type="fileDelete"/>
 		<instruction type="file" application="wcf"/>
 		<instruction type="acpTemplate" application="wcf"/>
+		<instruction type="database">acp/database/install_de.deinestrainreviews.autoDeleteUnconfirmedUsers.php</instruction>
 		<instruction type="language"/>
 		<instruction type="acpMenu"/>
 		<instruction type="page"/>
