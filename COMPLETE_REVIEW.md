@@ -120,20 +120,28 @@
 
 ---
 
-## ⚠️ Gefundene Probleme
+## ✅ Gefundene und behobene Probleme
 
 ### 1. Hardcoded Tabellenpräfix in SQL-Queries
 **Datei:** `files/lib/system/cronjob/DeleteUnconfirmedUsersCronjob.class.php`  
-**Zeilen:** 51, 52, 116, 117  
-**Problem:** Verwendet `wcf1_` statt `WCF_N` Konstante  
-**Auswirkung:** Funktioniert nur wenn Tabellenpräfix `wcf1_` ist  
-**Empfehlung:** Sollte `wcf` . WCF_N . `_` verwenden (wie im WoltLab Core)
+**Zeilen:** 51, 52, 121, 122  
+**Status:** ✅ **KEIN PROBLEM** (ursprüngliche Annahme war falsch)  
+**Begründung:** Core-Tabellen (`wcf1_user`, `wcf1_user_to_group`) werden in WoltLab immer hardcoded als `wcf1_` verwendet. Nur Plugin-Tabellen verwenden dynamisches `WCF_N`.  
+**Vergleich WoltLab Core:**
+- `FileCleanUpCronjob.class.php`: `FROM wcf1_file` (hardcoded)
+- `DailyMailNotificationCronjob.class.php`: `wcf" . WCF_N . "_user_notification` (nur für Plugin-Tabellen)
 
 ### 2. SQL IN (?) mit Array
 **Datei:** `files/lib/system/cronjob/DeleteUnconfirmedUsersCronjob.class.php`  
-**Zeile:** 118  
-**Problem:** `WHERE ug.groupID IN (?)` mit Array könnte problematisch sein  
-**Status:** ⚠️ **ZU PRÜFEN** - WoltLab verwendet das so, sollte funktionieren
+**Zeile:** 118 (ursprünglich), jetzt: 116-125  
+**Status:** ✅ **BEHOBEN**  
+**Problem:** PDO expandiert `IN (?)` **NICHT** automatisch für Arrays. Direkte Verwendung würde zu SQL-Fehlern führen.  
+**Lösung:** Verwendung von `PreparedStatementConditionBuilder` (WoltLab-Standard)  
+**Vorher:** `WHERE ug.groupID IN (?)` mit `execute([$adminGroupIDs, 0])`  
+**Nachher:** `PreparedStatementConditionBuilder` mit `add('ug.groupID IN (?)', [$adminGroupIDs])`  
+**Vergleich WoltLab Core:**
+- `DailyMailNotificationCronjob.class.php`: Verwendet `PreparedStatementConditionBuilder` für `IN (?)`
+- `BackgroundQueueCleanUpCronjob.class.php`: Verwendet `PreparedStatementConditionBuilder` für `IN (?)`
 
 ---
 
@@ -171,13 +179,14 @@
 **Gesamt:** 14 Dateien geprüft
 
 **Status:**
-- ✅ **13 Dateien korrekt**
-- ⚠️ **1 Datei mit kleineren Verbesserungsmöglichkeiten** (hardcoded Tabellenpräfix)
+- ✅ **14 Dateien korrekt**
+- ✅ **1 Problem gefunden und behoben** (IN (?) Array-Handling)
 
-**Kritische Probleme:** Keine
+**Kritische Probleme:** Keine (alle behoben)
 
-**Empfohlene Verbesserungen:**
-1. Tabellenpräfix in SQL-Queries durch `WCF_N` ersetzen (nicht kritisch, aber besser)
+**Durchgeführte Verbesserungen:**
+1. ✅ `IN (?)` Array-Handling durch `PreparedStatementConditionBuilder` ersetzt (WoltLab-Standard)
+2. ✅ Tabellenpräfix-Verwendung verifiziert als korrekt (Core-Tabellen sind hardcoded)
 
-**Standards-Konformität:** ✅ **Sehr gut** - Folgt WoltLab-Standards
+**Standards-Konformität:** ✅ **Vollständig konform** - Folgt exakt WoltLab-Standards
 
