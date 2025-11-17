@@ -4,7 +4,7 @@
 		<page identifier="de.deinestrainreviews.autoDeleteUnconfirmedUsers.DeletedUnconfirmedUsersLogPage">
 			<pageType>system</pageType>
 			<controller>wcf\acp\page\DeletedUnconfirmedUsersLogPage</controller>
-			<application>wcf</application>
+			<application>com.woltlab.wcf</application>
 			<isapplication>0</isapplication>
 			<name language="en">Deleted Unconfirmed Users</name>
 			<name language="de">Gelöschte unbestätigte Benutzer</name>
