@@ -2,7 +2,8 @@
 <data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/6.0/page.xsd">
 	<import>
 		<page identifier="de.deinestrainreviews.autoDeleteUnconfirmedUsers.DeletedUnconfirmedUsersLogPage">
-			<classname>wcf\acp\page\DeletedUnconfirmedUsersLogPage</classname>
+			<pageType>system</pageType>
+			<controller>wcf\acp\page\DeletedUnconfirmedUsersLogPage</controller>
 			<application>wcf</application>
 			<isapplication>0</isapplication>
 		</page>
