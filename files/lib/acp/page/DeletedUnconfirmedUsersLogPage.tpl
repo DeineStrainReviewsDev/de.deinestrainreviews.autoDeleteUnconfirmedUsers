@@ -9,7 +9,7 @@
 <section class="section">
 	<h2 class="sectionTitle">{lang}wcf.acp.deletedUnconfirmedUsersLog.title{/lang}</h2>
 	
-	{if $logEntries|count}
+	{if $objectList|count}
 		<div class="tabularBox">
 			<table class="table">
 				<thead>
@@ -22,7 +22,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					{foreach from=$logEntries item=logEntry}
+					{foreach from=$objectList item=logEntry}
 						<tr>
 							<td class="columnID columnLogID">{$logEntry->logID}</td>
 							<td class="columnTitle">{$logEntry->username}</td>
