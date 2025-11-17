@@ -6,8 +6,7 @@
 				<categoryname>user.register</categoryname>
 				<optiontype>boolean</optiontype>
 				<defaultvalue>0</defaultvalue>
-				<enableoptions>auto_delete_unconfirmed_users_days,
-auto_delete_unconfirmed_users_limit</enableoptions>
+				<enableoptions>auto_delete_unconfirmed_users_days,auto_delete_unconfirmed_users_limit</enableoptions>
 				<showorder>5</showorder>
 			</option>
 			<option name="auto_delete_unconfirmed_users_days">
