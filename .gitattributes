@@ -1,0 +1,20 @@
+# Exclude development files from package
+.gitattributes export-ignore
+.gitignore export-ignore
+.packageinfo export-ignore
+build.sh export-ignore
+.vscode/ export-ignore
+build/ export-ignore
+.DS_Store export-ignore
+
+# Exclude files directory (will be included as files.tar)
+files/ export-ignore
+
+# Exclude acptemplates directory (will be included as acptemplates.tar)
+acptemplates/ export-ignore
+
+# Exclude documentation files from package
+CHANGELOG.md export-ignore
+README.md export-ignore
+LICENSE export-ignore
+
