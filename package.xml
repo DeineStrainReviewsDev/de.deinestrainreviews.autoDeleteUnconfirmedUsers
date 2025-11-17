@@ -25,6 +25,7 @@
 		<instruction type="cronjob"/>
 		<instruction type="sql"/>
 		<instruction type="file" application="wcf">files.tar</instruction>
+		<instruction type="acpTemplate" application="wcf">acptemplates.tar</instruction>
 		<instruction type="language"/>
 		<instruction type="acpMenu"/>
 		<instruction type="page"/>
@@ -33,6 +34,7 @@
 	<instructions type="update" fromversion="1.0.0">
 		<instruction type="sql"/>
 		<instruction type="file" application="wcf"/>
+		<instruction type="acpTemplate" application="wcf"/>
 		<instruction type="language"/>
 		<instruction type="acpMenu"/>
 		<instruction type="page"/>
@@ -41,12 +43,14 @@
 	<instructions type="update" fromversion="1.1.0">
 		<instruction type="sql"/>
 		<instruction type="file" application="wcf"/>
+		<instruction type="acpTemplate" application="wcf"/>
 		<instruction type="acpMenu"/>
 		<instruction type="page"/>
 	</instructions>
 	<instructions type="update" fromversion="1.1.1">
 		<instruction type="sql"/>
 		<instruction type="file" application="wcf"/>
+		<instruction type="acpTemplate" application="wcf"/>
 		<instruction type="language"/>
 		<instruction type="acpMenu"/>
 		<instruction type="page"/>
@@ -54,6 +58,7 @@
 	<instructions type="update" fromversion="1.2.0">
 		<instruction type="sql"/>
 		<instruction type="file" application="wcf"/>
+		<instruction type="acpTemplate" application="wcf"/>
 		<instruction type="language"/>
 		<instruction type="acpMenu"/>
 		<instruction type="page"/>
