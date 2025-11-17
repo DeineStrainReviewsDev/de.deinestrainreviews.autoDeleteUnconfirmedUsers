@@ -4,6 +4,7 @@ namespace wcf\system\cronjob;
 
 use wcf\data\deleted\unconfirmed\user\log\DeletedUnconfirmedUserLogEditor;
 use wcf\data\user\UserAction;
+use wcf\data\user\group\UserGroup;
 use wcf\system\cronjob\AbstractCronjob;
 use wcf\system\email\Email;
 use wcf\system\email\mime\MimePartFacade;
@@ -98,13 +99,25 @@ class DeleteUnconfirmedUsersCronjob extends AbstractCronjob {
             return;
         }
 
-        // Get all administrators (group ID 4 is typically administrators)
+        // Get all administrators using UserGroup::isAdminGroup()
+        $adminGroupIDs = [];
+        foreach (UserGroup::getGroupsByType([], [UserGroup::OWNER]) as $group) {
+            if ($group->isAdminGroup()) {
+                $adminGroupIDs[] = $group->groupID;
+            }
+        }
+        
+        if (empty($adminGroupIDs)) {
+            return;
+        }
+        
+        // Get all users in admin groups
         $sql = "SELECT DISTINCT u.userID, u.email, u.username
                 FROM wcf1_user_to_group ug
                 INNER JOIN wcf1_user u ON u.userID = ug.userID
-                WHERE ug.groupID = ? AND u.userID <> ?";
+                WHERE ug.groupID IN (?) AND u.userID <> ?";
         $statement = WCF::getDB()->prepareStatement($sql);
-        $statement->execute([4, 0]);
+        $statement->execute([$adminGroupIDs, 0]);
         $administrators = $statement->fetchAll(\PDO::FETCH_ASSOC);
 
         if (empty($administrators)) {
