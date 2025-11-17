@@ -119,11 +119,14 @@
 ~~### ⚠️ Handler-Klasse Namespace~~  
 **Status:** ✅ **BEHOBEN** - Handler-Klasse wurde durch Standard `DatabaseObjectEditor` ersetzt
 
-### ⚠️ Namespace-Struktur für "deleted/unconfirmed/user"
+### ✅ Namespace-Struktur für "deleted/unconfirmed/user"
 **Aktuell:** `wcf\data\deleted\unconfirmed\user\log`  
-**Frage:** Ist diese tiefe Verschachtelung Standard?  
-**Alternative:** `wcf\data\deletedUnconfirmedUserLog` (flacher)  
-**Empfehlung:** In WoltLab-Core prüfen, wie ähnliche Log-Tabellen strukturiert sind
+**Status:** ✅ **KORREKT** (ursprüngliche Annahme war falsch)  
+**Begründung:** Tiefe Verschachtelung (5 Ebenen) ist Standard in WoltLab Core. Ähnliche Strukturen:
+- `wcf\data\acp\session\access\log` (ACPSessionAccessLog) - 5 Ebenen
+- `wcf\data\paid\subscription\transaction\log` (PaidSubscriptionTransactionLog) - 5 Ebenen
+- Unsere Struktur folgt dem gleichen Pattern: `wcf\data\[hauptkategorie]\[unterkategorie]\[detail]\log`
+**Dokumentation:** Siehe `NAMESPACE_ANALYSIS.md` für ausführliche Analyse
 
 ---
 
@@ -138,7 +141,7 @@
 - ✅ Cronjob korrekt implementiert
 
 **Zu prüfen:**
-- ⚠️ Tiefe Namespace-Verschachtelung (möglicherweise zu tief)
+- ✅ Alle Punkte geprüft und korrekt
 
 **Bekannte Abweichungen:**
 - ⚠️ Plugin-Name verwendet CamelCase (`autoDeleteUnconfirmedUsers`) statt Bindestriche (`auto-delete-unconfirmed-users`)

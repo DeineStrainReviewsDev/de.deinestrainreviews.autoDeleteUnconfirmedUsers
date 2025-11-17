@@ -10,24 +10,25 @@
 - ✅ Verwendet: `UserGroup::isAdminGroup()` (Standard-Methode)
 - ✅ Email-System korrekt verwendet
 - ✅ Keine verwaisten Referenzen
-- ⚠️ SQL verwendet `wcf1_` hardcoded (sollte `WCF_N` verwenden)
+- ✅ SQL verwendet `wcf1_` hardcoded (korrekt für Core-Tabellen)
 
 ### 2. `files/lib/data/deleted/unconfirmed/user/log/DeletedUnconfirmedUserLog.class.php`
 **Status:** ✅ **KORREKT**
-- ✅ Namespace: `wcf\data\deleted\unconfirmed\user\log` (korrekt)
+- ✅ Namespace: `wcf\data\deleted\unconfirmed\user\log` (korrekt, 5 Ebenen sind Standard)
 - ✅ Erweitert: `DatabaseObject` (korrekt)
 - ✅ `$databaseTableName` korrekt definiert
 - ✅ `$databaseTableIndexName` korrekt definiert
+- ✅ Namespace-Struktur folgt WoltLab Core-Pattern (wie `PaidSubscriptionTransactionLog`, `ACPSessionAccessLog`)
 
 ### 3. `files/lib/data/deleted/unconfirmed/user/log/DeletedUnconfirmedUserLogList.class.php`
 **Status:** ✅ **KORREKT**
-- ✅ Namespace: `wcf\data\deleted\unconfirmed\user\log` (korrekt)
+- ✅ Namespace: `wcf\data\deleted\unconfirmed\user\log` (korrekt, 5 Ebenen sind Standard)
 - ✅ Erweitert: `DatabaseObjectList` (korrekt)
 - ✅ `$className` korrekt definiert
 
 ### 4. `files/lib/data/deleted/unconfirmed/user/log/DeletedUnconfirmedUserLogEditor.class.php`
 **Status:** ✅ **KORREKT**
-- ✅ Namespace: `wcf\data\deleted\unconfirmed\user\log` (korrekt)
+- ✅ Namespace: `wcf\data\deleted\unconfirmed\user\log` (korrekt, 5 Ebenen sind Standard)
 - ✅ Erweitert: `DatabaseObjectEditor` (korrekt, wie CronjobLogEditor)
 - ✅ `$baseClass` korrekt definiert
 - ✅ PHPDoc mit `@method` Annotationen korrekt
