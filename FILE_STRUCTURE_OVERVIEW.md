@@ -138,6 +138,10 @@
 - ✅ Cronjob korrekt implementiert
 
 **Zu prüfen:**
-- ⚠️ Handler-Klasse Namespace (möglicherweise nicht Standard)
 - ⚠️ Tiefe Namespace-Verschachtelung (möglicherweise zu tief)
+
+**Bekannte Abweichungen:**
+- ⚠️ Plugin-Name verwendet CamelCase (`autoDeleteUnconfirmedUsers`) statt Bindestriche (`auto-delete-unconfirmed-users`)
+  - **Grund:** Name wird beibehalten, um Update-Kompatibilität zu gewährleisten
+  - **Hinweis:** Für zukünftige Plugins die WoltLab-Namenskonventionen beachten (siehe: https://github.com/SunnyCueq/simple-woltlab-plugin-manager/blob/main/docs/PLUGIN-NAMING.md)
 
