@@ -2,7 +2,7 @@
 
 namespace wcf\system\cronjob;
 
-use wcf\system\deleted\unconfirmed\user\DeletedUnconfirmedUserLogHandler;
+use wcf\data\deleted\unconfirmed\user\log\DeletedUnconfirmedUserLogEditor;
 use wcf\data\user\UserAction;
 use wcf\system\cronjob\AbstractCronjob;
 use wcf\system\email\Email;
@@ -69,7 +69,16 @@ class DeleteUnconfirmedUsersCronjob extends AbstractCronjob {
         $userIDs = array_column($users, 'userID');
 
         // Create log entries before deletion
-        DeletedUnconfirmedUserLogHandler::createLogEntries($users);
+        $deletionDate = TIME_NOW;
+        foreach ($users as $user) {
+            DeletedUnconfirmedUserLogEditor::create([
+                'userID' => $user['userID'],
+                'username' => $user['username'],
+                'email' => $user['email'],
+                'registrationDate' => $user['registrationDate'],
+                'deletionDate' => $deletionDate
+            ]);
+        }
 
         // Delete users via UserAction
         $userAction = new UserAction($userIDs, 'delete');
