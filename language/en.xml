@@ -8,6 +8,27 @@
 			<item name="wcf.acp.option.auto_delete_unconfirmed_users_days.description"><![CDATA[Number of days after which unconfirmed users are automatically deleted.]]></item>
 			<item name="wcf.acp.option.auto_delete_unconfirmed_users_limit"><![CDATA[Users per cron job execution]]></item>
 			<item name="wcf.acp.option.auto_delete_unconfirmed_users_limit.description"><![CDATA[Defines the maximum number of users that can be deleted per cron job execution to reduce server load.]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_send_email"><![CDATA[Send email notifications to administrators]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_send_email.description"><![CDATA[If this option is enabled, administrators will be notified via email when unconfirmed users are automatically deleted.]]></item>
+		</category>
+		<category name="wcf.acp.group">
+			<item name="wcf.acp.group.option.admin.user.canViewDeletedUnconfirmedUsersLog"><![CDATA[Can view log of automatic deletion of unconfirmed users (email confirmation)]]></item>
+			<item name="wcf.acp.group.option.admin.user.canViewDeletedUnconfirmedUsersLog.description"><![CDATA[Allows viewing the log of automatically deleted unconfirmed users (email confirmation) in the ACP.]]></item>
+		</category>
+		<category name="wcf.acp.menu">
+			<item name="wcf.acp.menu.link.deletedUnconfirmedUsersLog"><![CDATA[Deleted Unconfirmed Users]]></item>
+		</category>
+		<category name="wcf.acp.deletedUnconfirmedUsersLog">
+			<item name="wcf.acp.deletedUnconfirmedUsersLog.title"><![CDATA[Deleted Unconfirmed Users log]]></item>
+			<item name="wcf.acp.deletedUnconfirmedUsersLog.noEntries"><![CDATA[No unconfirmed users (email confirmation) have been automatically deleted yet.]]></item>
+			<item name="wcf.acp.deletedUnconfirmedUsersLog.deletionDate"><![CDATA[Deletion Date]]></item>
+			<item name="wcf.acp.deletedUnconfirmedUsersLog.registrationDate"><![CDATA[Registration Date]]></item>
+			<item name="wcf.acp.deletedUnconfirmedUsersLog.email"><![CDATA[Email]]></item>
+			<item name="wcf.acp.deletedUnconfirmedUsersLog.username"><![CDATA[Username]]></item>
+		</category>
+		<category name="wcf.acp.notification">
+			<item name="wcf.acp.notification.deletedUnconfirmedUsers.subject"><![CDATA[{$count} unconfirmed user(s) deleted]]></item>
+			<item name="wcf.acp.notification.deletedUnconfirmedUsers.message"><![CDATA[Hello {$username},<br><br>{$count} unconfirmed user(s) have been automatically deleted from the system.<br><br>{@$userList}<br><br>You can view further details in the <a href="{$logPageUrl}">ACP log page</a>.]]></item>
 		</category>
 	</import>
 </language>

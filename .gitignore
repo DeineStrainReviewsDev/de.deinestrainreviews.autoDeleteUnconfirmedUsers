@@ -1,4 +1,4 @@
-# Ignore all tar and tar.gz files
+# Ignore all tar and tar.gz files (build archives)
 *.tar
 *.tar.gz
 
@@ -6,3 +6,13 @@
 .vscode/
 .vscode/*
 *.code-workspace
+
+# Ignore Windows Zone Identifier files
+*:Zone.Identifier
+
+# Ignore plugin store description files (for local use only)
+PLUGIN_DESCRIPTION_*.md
+PLUGIN_STORE_*.txt
+
+# Ignore pull request description files (for local use only)
+PR_DESCRIPTION.md
