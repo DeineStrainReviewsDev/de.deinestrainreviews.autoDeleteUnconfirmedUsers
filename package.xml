@@ -6,8 +6,8 @@
 		<packagename language="de">Automatische Löschung unbestätigter Benutzer</packagename>
 		<packagedescription>Automatically deletes users who have not confirmed their email within the specified time.</packagedescription>
 		<packagedescription language="de">Automatische Löschung von Benutzern, die ihre E-Mail nicht innerhalb der festgelegten Zeit bestätigt haben.</packagedescription>
-		<version>1.2.0</version>
-		<date>2025-11-18</date>
+		<version>1.3.0</version>
+		<date>2025-11-20</date>
 		<packageurl>https://deinestrainreviews.de</packageurl>
 		<license>https://www.gnu.org/licenses/gpl-3.0.txt</license>
 	</packageinformation>
@@ -32,6 +32,7 @@
 		<instruction type="userGroupOption"/>
 	</instructions>
 	<instructions type="update" fromversion="1.0.0">
+		<instruction type="cronjob"/>
 		<instruction type="file" application="wcf"/>
 		<instruction type="acpTemplate" application="wcf"/>
 		<instruction type="database">acp/database/install_de.deinestrainreviews.autoDeleteUnconfirmedUsers.php</instruction>
@@ -41,6 +42,7 @@
 		<instruction type="userGroupOption"/>
 	</instructions>
 	<instructions type="update" fromversion="1.1.0">
+		<instruction type="cronjob"/>
 		<instruction type="file" application="wcf"/>
 		<instruction type="acpTemplate" application="wcf"/>
 		<instruction type="database">acp/database/install_de.deinestrainreviews.autoDeleteUnconfirmedUsers.php</instruction>
@@ -50,12 +52,22 @@
 		<instruction type="userGroupOption"/>
 	</instructions>
 	<instructions type="update" fromversion="1.1.1">
+		<instruction type="cronjob"/>
 		<instruction type="file" application="wcf"/>
 		<instruction type="acpTemplate" application="wcf"/>
 		<instruction type="database">acp/database/install_de.deinestrainreviews.autoDeleteUnconfirmedUsers.php</instruction>
 		<instruction type="language"/>
 		<instruction type="option"/>
+		<instruction type="acpMenu"/>
+		<instruction type="userGroupOption"/>
+	</instructions>
+	<instructions type="update" fromversion="1.2.0">
 		<instruction type="cronjob"/>
+		<instruction type="file" application="wcf"/>
+		<instruction type="acpTemplate" application="wcf"/>
+		<instruction type="database">acp/database/update_1.2.0_to_1.3.0.php</instruction>
+		<instruction type="language"/>
+		<instruction type="option"/>
 		<instruction type="acpMenu"/>
 		<instruction type="userGroupOption"/>
 	</instructions>

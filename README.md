@@ -1,143 +1,244 @@
-# de.deinestrainreviews.autoDeleteUnconfirmedUsers
+# Auto-Delete Unconfirmed Users
 
 > 🌐 **Language / Sprache**: [English](#readme) | [Deutsch](README_DE.md)
 
-A WoltLab plugin that automatically deletes unconfirmed users after a configurable period.
+A WoltLab plugin that automatically deletes unconfirmed users after a configurable period. Features a two-stage deletion workflow with optional reminder emails and comprehensive logging.
 
-## Features
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![WoltLab Plugin Store](https://img.shields.io/badge/WoltLab-Plugin%20Store-orange)](https://www.woltlab.com/)
 
-### ✅ Fully Functional (Version 1.1.1+)
-- Periodic check for unconfirmed users via cron job
-- Automatic deletion after a configurable period
-- Only deletes users who are exclusively in the "Guests" group (ID 2)
-- Users with additional group memberships are preserved
-- ⚠️ **Important**: Only users are deleted - their content (posts, attachments, conversations, etc.) remains in the system
+## 🚀 Current Version: 1.3.0
+
+### Key Features
+
+- ✅ **Two-Stage Deletion Workflow** - Optional reminder email before deletion
+- ✅ **Comprehensive Logging** - Track deleted users and sent reminder emails
+- ✅ **GDPR-Compliant** - Automatic data anonymization
+- ✅ **Email Notifications** - Keep admins informed about deletions and reminders
+- ✅ **Flexible Configuration** - Customize timing and behavior
+- ✅ **Multilingual** - Full support for German and English
+
+<details>
+<summary><strong>📋 Full Feature List</strong></summary>
+
+### Core Features (v1.0.0+)
+- Automatic deletion of unconfirmed users via cron job
+- Configurable deletion period
+- Only deletes users exclusively in "Guests" group (ID 2)
+- Preserves user content (posts, attachments, conversations)
 - Multilingual support (German & English)
-- Admin panel settings to configure deletion time
-- Configurable maximum number of users deleted per cron job execution (max 50 per run)
 
-### ✅ Fully Functional (Version 1.2.0)
-- **ACP Log Page** - View all deleted unconfirmed users in the administration panel
-- **Sortable Log Table** - Sort by ID, username, email, registration date, or deletion date
-- **Database Logging** - Log entries are stored in the database
-- **Automatic Log Entry Creation** - Log entries are created automatically during deletion
-- **Email Notifications** - Administrators receive email notifications when users are deleted
-- **GDPR-Compliant Data Anonymization** - All personal data (usernames and email addresses) are automatically anonymized before storage and in email notifications
+### Enhanced Features (v1.1.0+)
+- Configurable batch size (max 50 users per cron run)
+- Server load optimization
 
-### 📋 Planned Features
-- **Optional Content Deletion** - An optional feature to completely remove all content of deleted users (posts, attachments, etc.). This feature will be configurable, allowing administrators to decide whether content should remain for better readability of threads or be completely removed.
-- **Resend Confirmation Email with Deletion Warning** - Resend the confirmation email with a notice about the upcoming deletion. This could help activate users who simply forgot to click the confirmation link.
+### Logging & Notifications (v1.2.0+)
+- ACP log page for deleted users
+- Sortable log table (ID, username, email, dates)
+- Database logging with permanent storage
+- Email notifications to administrators
+- GDPR-compliant data anonymization
 
-## Admin Panel Options
-The plugin adds the following settings in the **WoltLab ACP (Administration Control Panel)**:
+### Two-Stage Workflow (v1.3.0+)
+- Optional reminder email before deletion
+- Separate log page for resent activation emails
+- Split notification settings (reminder vs. deletion)
+- Intelligent contact form detection
+- Professional HTML email templates
 
-**Location**: ACP → Configuration → Options → User → Registration
+</details>
 
-- **Enable automatic deletion of unconfirmed users**  
-  If enabled, unconfirmed users will be automatically deleted after the specified number of days.  
+## 📦 Installation
 
-- **Days until unconfirmed users are deleted**  
-  The number of days after which unconfirmed users will be removed.
+1. Download the latest release from the [WoltLab Plugin Store](https://www.woltlab.com/) or [GitHub Releases](https://github.com/DeineStrainReviewsDev/de.deinestrainreviews.autoDeleteUnconfirmedUsers/releases)
+2. Upload the `.tar.gz` file via WoltLab ACP
+3. Configure settings under **ACP → Configuration → Options → Users → Registration**
+4. Set permissions for user groups that should access the log pages
 
-- **Users per cron job execution** (New in Version 1.1.0)  
-  Maximum number of users that can be deleted per cron job execution to reduce server load (maximum 50 per run).
+## ⚙️ Configuration
 
-**Important Notes**:
-- Only users who are exclusively in the "Guests" group (ID 2) are deleted
-- Users with additional group memberships are preserved
-- Only users are deleted - their content (posts, attachments, conversations, etc.) remains in the system  
+### Location
+**ACP → Configuration → Options → Users → Registration**
 
-## Configuration
+### Available Options
 
-### Permissions
-The plugin adds a new permission for viewing the deleted users log:
+| Option | Description | Default |
+|--------|-------------|---------|
+| **Enable automatic deletion** | Activate the automatic deletion feature | Disabled |
+| **Days until resending activation email** | Days before sending reminder email (0 = disabled, direct deletion) | 0 |
+| **Days until deletion** | Days after reminder before final deletion | 7 |
+| **Users per cron execution** | Maximum users processed per run (max 50) | 10 |
+| **Email notification (reminders)** | Notify admins when reminder emails are sent | Enabled |
+| **Email notification (deletions)** | Notify admins when users are deleted | Enabled |
 
-- **Can view log of automatic deletion of unconfirmed users (email confirmation)**  
-  Located in: ACP → User Management → User Groups → [Select Group] → User Permissions  
-  This permission allows users to view the log of automatically deleted unconfirmed users in the ACP.
+<details>
+<summary><strong>🔧 Configuration Examples</strong></summary>
 
-### Accessing the Log Page
-After installation, you can access the log page at:
-- **ACP → User Management → Deleted Unconfirmed Users**
+### Example 1: Two-Stage Process (Recommended)
+```
+Days until resending activation email: 7
+Days until deletion: 7
+```
+**Result:** User registers → After 7 days: reminder email → After another 7 days (total 14): deletion
 
-The log page displays:
-- User ID (logID)
-- Username
-- Email address
+### Example 2: Direct Deletion (Legacy Mode)
+```
+Days until resending activation email: 0
+Days until deletion: 7
+```
+**Result:** User registers → After 7 days: direct deletion (no reminder)
+
+### Example 3: Extended Grace Period
+```
+Days until resending activation email: 14
+Days until deletion: 14
+```
+**Result:** User registers → After 14 days: reminder email → After another 14 days (total 28): deletion
+
+</details>
+
+## 📊 Log Pages
+
+### Deleted Users Log
+**Location:** ACP → Users → Deleted Unconfirmed Users
+
+View all deleted users with:
+- User ID
+- Anonymized username
+- Anonymized email
 - Registration date
 - Deletion date
 
-All columns are sortable, and the table is paginated (100 entries per page by default).
+### Resent Activation Emails Log
+**Location:** ACP → Users → Resent Activation Emails
 
-### Email Notifications ✅
-Administrators receive email notifications when users are deleted. The notification includes:
-- Number of deleted users
-- Personalized greeting with administrator username
-- Link to view details in the ACP log page
+View all sent reminder emails with:
+- User ID
+- Anonymized username
+- Anonymized email
+- Registration date
+- Resend date
 
-Notifications are automatically sent to all users in administrator groups when unconfirmed users are deleted.
+### Permissions
+Set viewing permissions under:
+**ACP → User Groups → [Select Group] → Administrative Rights → Users**
 
-### GDPR-Compliant Data Anonymization ✅ (Version 1.2.0+)
+Permission: *Can view logs of automatic deletion of unconfirmed users*
 
-This plugin implements comprehensive data anonymization to ensure GDPR compliance. All personal data (usernames and email addresses) are automatically anonymized before being stored in the database or sent via email notifications.
+## 🔒 GDPR Compliance
 
-#### Username Anonymization
+All personal data is automatically anonymized before storage and in email notifications.
 
-Usernames are anonymized using a smart masking algorithm that preserves partial readability for administrative purposes while ensuring privacy:
+<details>
+<summary><strong>📝 Anonymization Details</strong></summary>
 
-- **Short usernames (≤ 4 characters)**: Fully masked
-  - Example: `test` → `****`
-  
-- **Medium usernames (5-8 characters)**: First 2 characters + mask + last 2 characters
-  - Example: `username` → `us***me`
-  
-- **Long usernames (9+ characters)**: First 2 characters + mask + last 4 characters
-  - Example: `johnsmith123` → `jo***h123`
+### Username Anonymization
 
-This approach allows administrators to identify users approximately (e.g., distinguishing between "johnsmith" and "johndoe") while protecting personal data.
+| Length | Pattern | Example |
+|--------|---------|---------|
+| ≤ 4 chars | Fully masked | `test` → `****` |
+| 5-8 chars | First 2 + mask + last 2 | `username` → `us***me` |
+| 9+ chars | First 2 + mask + last 4 | `johnsmith123` → `jo***h123` |
 
-#### Email Address Anonymization
+### Email Anonymization
 
-Email addresses are anonymized more strictly to ensure maximum privacy protection:
+**Pattern:** First char of local part + mask @ first 2 chars of domain + mask . first char(s) of TLD + mask
 
-**Local Part (before @):**
-- Shows only the first character
-- Example: `testuser` → `t***`
-
-**Domain Name (before TLD):**
-- Shows first 2 characters + mask
-- Example: `example` → `ex***`
-
-**Top-Level Domain (TLD):**
-- 1 character: Fully masked (`*`)
-- 2-3 characters: First character + mask (e.g., `i***` for `.invalid`)
-- 4+ characters: First 2 characters + mask (e.g., `co***` for `.com`)
-
-**Complete Examples:**
+**Examples:**
 - `testuser@example.com` → `t***@ex***.co***`
-- `admin@domain.invalid` → `a***@do***.in***`
-- `john@site.org` → `j***@si***.o***`
+- `admin@domain.org` → `a***@do***.o***`
 
-#### Where Anonymization is Applied
+### Where Applied
+1. Database log entries
+2. Email notifications to administrators
+3. ACP log page displays
 
-1. **Database Log Entries**: All usernames and email addresses stored in the log table are anonymized
-2. **Email Notifications**: The user list included in administrator email notifications contains only anonymized data
-3. **ACP Log Display**: The log page displays anonymized data (as stored in the database)
+</details>
 
-#### Benefits
+## 📝 Changelog
 
-- **GDPR Compliance**: Personal data is protected according to GDPR requirements
-- **Privacy Protection**: Email addresses are strongly anonymized to prevent identification
-- **Administrative Utility**: Usernames remain partially readable for administrative purposes
-- **Automatic Processing**: Anonymization happens automatically during deletion - no manual intervention required
-- **Consistent Application**: Same anonymization rules apply to both database storage and email notifications
+<details>
+<summary><strong>Version 1.3.0 (2025-11-21)</strong> - Latest Release</summary>
 
-## Installation
-1. Download the latest `.tar.gz` release from the [Releases](https://github.com/DeineStrainReviewsDev/de.deinestrainreviews.autoDeleteUnconfirmedUsers/releases) section.
-2. Upload the `.tar.gz` file via the WoltLab ACP.
-3. Activate the plugin and configure the desired waiting time before deletion.
-4. Configure permissions for user groups that should have access to the log page.
+### ✨ New Features
+- Two-stage deletion workflow with optional reminder emails
+- New database table for tracking resent activation emails
+- Separate ACP log page for reminder emails
+- Split email notification settings (reminder vs. deletion)
+- Professional HTML email templates
+- Intelligent contact form module detection
+- Enhanced admin notifications for both workflow stages
 
-## License
+### 🔧 Technical Changes
+- Added `wcf1_resent_activation_email_log` table
+- Migration script for v1.2.0 → v1.3.0 upgrade
+- New configuration options for two-stage workflow
+- Updated language files (EN/DE)
+
+### 📦 Release
+- Approved and published in WoltLab Plugin Store
+
+</details>
+
+<details>
+<summary><strong>Version 1.2.0 (2024)</strong></summary>
+
+### ✨ New Features
+- ACP log page for deleted users
+- Sortable log table
+- Database logging with permanent storage
+- Email notifications to administrators
+- GDPR-compliant data anonymization
+
+### 🔧 Technical Changes
+- Added `wcf1_deleted_unconfirmed_user_log` table
+- New permission system for log access
+- Anonymization algorithms for usernames and emails
+
+</details>
+
+<details>
+<summary><strong>Version 1.1.0 (2024)</strong></summary>
+
+### ✨ New Features
+- Configurable batch size (max 50 users per run)
+- Server load optimization
+
+</details>
+
+<details>
+<summary><strong>Version 1.0.0 (2024)</strong></summary>
+
+### ✨ Initial Release
+- Automatic deletion of unconfirmed users
+- Configurable deletion period
+- Group-based filtering (Guests only)
+- Multilingual support (DE/EN)
+
+</details>
+
+## 🔮 Planned Features
+
+- **Optional Content Deletion** - Configurable removal of all user-generated content (posts, attachments, etc.)
+
+## ⚠️ Important Notes
+
+- Only users **exclusively** in the "Guests" group (ID 2) are deleted
+- Users with additional group memberships are **preserved**
+- User content (posts, attachments, conversations) **remains** in the system
+- The cron job must be properly configured in WoltLab
+
+## 📄 License
+
 This project is licensed under the **GNU General Public License v3.0 (GPL-3.0)**.  
 See the [LICENSE](LICENSE) file for details.
+
+## 🔗 Links
+
+- [WoltLab Plugin Store](https://www.woltlab.com/)
+- [GitHub Repository](https://github.com/DeineStrainReviewsDev/de.deinestrainreviews.autoDeleteUnconfirmedUsers)
+- [Report Issues](https://github.com/DeineStrainReviewsDev/de.deinestrainreviews.autoDeleteUnconfirmedUsers/issues)
+
+---
+
+**Made with ❤️ for the WoltLab Community**

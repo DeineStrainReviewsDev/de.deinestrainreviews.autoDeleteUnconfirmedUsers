@@ -10,11 +10,10 @@ use wcf\data\DatabaseObjectEditor;
  * @author DeineStrainReviews.de Development Team
  * @copyright 2025 DeineStrainReviews.de
  * @license https://www.gnu.org/licenses/gpl-3.0.txt
- * @package de.deinestrainreviews.autoDeleteUnconfirmedUsers
  * 
  * @method static DeletedUnconfirmedUserLog create(array $parameters = [])
- * @method      DeletedUnconfirmedUserLog getDecoratedObject()
- * @mixin       DeletedUnconfirmedUserLog
+ * @method DeletedUnconfirmedUserLog getDecoratedObject()
+ * @mixin DeletedUnconfirmedUserLog
  */
 class DeletedUnconfirmedUserLogEditor extends DatabaseObjectEditor {
 	/**

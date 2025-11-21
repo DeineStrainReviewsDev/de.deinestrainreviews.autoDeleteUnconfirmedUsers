@@ -10,11 +10,11 @@ use wcf\data\DatabaseObjectList;
  * @author DeineStrainReviews.de Development Team
  * @copyright 2025 DeineStrainReviews.de
  * @license https://www.gnu.org/licenses/gpl-3.0.txt
- * @package de.deinestrainreviews.autoDeleteUnconfirmedUsers
  * 
  * @method DeletedUnconfirmedUserLog current()
  * @method DeletedUnconfirmedUserLog[] getObjects()
  * @method DeletedUnconfirmedUserLog|null search($objectID)
+ * @property DeletedUnconfirmedUserLog[] $objects
  */
 class DeletedUnconfirmedUserLogList extends DatabaseObjectList {
 	/**

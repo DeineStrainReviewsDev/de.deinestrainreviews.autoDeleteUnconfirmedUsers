@@ -6,18 +6,30 @@
 				<categoryname>user.register</categoryname>
 				<optiontype>boolean</optiontype>
 				<defaultvalue>0</defaultvalue>
-				<enableoptions>auto_delete_unconfirmed_users_days,
+				<enableoptions>auto_delete_unconfirmed_users_resend_email_days,
+					auto_delete_unconfirmed_users_days,
 					auto_delete_unconfirmed_users_limit,
-					auto_delete_unconfirmed_users_send_email,
+					auto_delete_unconfirmed_users_send_email_resent,
+					auto_delete_unconfirmed_users_send_email_deleted,
 					auto_delete_unconfirmed_users_log</enableoptions>
 				<showorder>5</showorder>
+			</option>
+			<option name="auto_delete_unconfirmed_users_resend_email_days">
+				<categoryname>user.register</categoryname>
+				<optiontype>integer</optiontype>
+				<defaultvalue>7</defaultvalue>
+				<validationpattern>^[0-9]+$</validationpattern>
+				<showorder>6</showorder>
+				<minvalue>0</minvalue>
+				<maxvalue>365</maxvalue>
+				<disableAutocomplete>1</disableAutocomplete>
 			</option>
 			<option name="auto_delete_unconfirmed_users_days">
 				<categoryname>user.register</categoryname>
 				<optiontype>integer</optiontype>
 				<defaultvalue>7</defaultvalue>
 				<validationpattern>^[0-9]+$</validationpattern>
-				<showorder>6</showorder>
+				<showorder>7</showorder>
 				<minvalue>1</minvalue>
 				<maxvalue>365</maxvalue>
 				<disableAutocomplete>1</disableAutocomplete>
@@ -26,17 +38,26 @@
 				<categoryname>user.register</categoryname>
 				<optiontype>integer</optiontype>
 				<defaultvalue>10</defaultvalue>
-				<showorder>7</showorder>
+				<showorder>8</showorder>
 				<minvalue>1</minvalue>
 				<maxvalue>50</maxvalue>
 				<disableAutocomplete>1</disableAutocomplete>
 			</option>
-			<option name="auto_delete_unconfirmed_users_send_email">
+			<option name="auto_delete_unconfirmed_users_send_email_resent">
 				<categoryname>user.register</categoryname>
 				<optiontype>boolean</optiontype>
 				<defaultvalue>1</defaultvalue>
-				<showorder>8</showorder>
+				<showorder>9</showorder>
+			</option>
+			<option name="auto_delete_unconfirmed_users_send_email_deleted">
+				<categoryname>user.register</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>1</defaultvalue>
+				<showorder>10</showorder>
 			</option>
 		</options>
 	</import>
+	<delete>
+		<option name="auto_delete_unconfirmed_users_send_email" />
+	</delete>
 </data>
