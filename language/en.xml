@@ -4,23 +4,41 @@
 		<category name="wcf.acp.option">
 			<item name="wcf.acp.option.enable_auto_delete_unconfirmed_users"><![CDATA[Enable automatic deletion of unconfirmed users]]></item>
 			<item name="wcf.acp.option.enable_auto_delete_unconfirmed_users.description"><![CDATA[If this option is enabled, unconfirmed users will be automatically deleted after the specified number of days.]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_resend_email_days"><![CDATA[Days until resending activation email]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_resend_email_days.description"><![CDATA[Number of days after registration after which the activation email will be resent. If set to 0, no email will be resent and users will be deleted directly after the configured days.]]></item>
 			<item name="wcf.acp.option.auto_delete_unconfirmed_users_days"><![CDATA[Days until unconfirmed users are deleted]]></item>
-			<item name="wcf.acp.option.auto_delete_unconfirmed_users_days.description"><![CDATA[Number of days after which unconfirmed users are automatically deleted.]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_days.description"><![CDATA[Number of days after which unconfirmed users are automatically deleted. If the resend option is enabled, this count starts from the time the email was resent.]]></item>
 			<item name="wcf.acp.option.auto_delete_unconfirmed_users_limit"><![CDATA[Users per cron job execution]]></item>
-			<item name="wcf.acp.option.auto_delete_unconfirmed_users_limit.description"><![CDATA[Defines the maximum number of users that can be deleted per cron job execution to reduce server load.]]></item>
-			<item name="wcf.acp.option.auto_delete_unconfirmed_users_send_email"><![CDATA[Send email notifications to administrators]]></item>
-			<item name="wcf.acp.option.auto_delete_unconfirmed_users_send_email.description"><![CDATA[If this option is enabled, administrators will be notified via email when unconfirmed users are automatically deleted.]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_limit.description"><![CDATA[Defines the maximum number of users that can be processed per cron job execution to reduce server load. This limit applies to both resending activation emails and deleting users who have already received a reminder email.]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_send_email_resent"><![CDATA[Email notification when sending reminder emails]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_send_email_resent.description"><![CDATA[If this option is enabled, administrators will be notified via email when reminder activation emails are sent to unconfirmed users.]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_send_email_deleted"><![CDATA[Email notification when deleting users]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_send_email_deleted.description"><![CDATA[If this option is enabled, administrators will be notified via email when unconfirmed users are automatically deleted.]]></item>
 		</category>
 		<category name="wcf.acp.group">
-			<item name="wcf.acp.group.option.admin.user.canViewDeletedUnconfirmedUsersLog"><![CDATA[Can view log of automatic deletion of unconfirmed users (email confirmation)]]></item>
-			<item name="wcf.acp.group.option.admin.user.canViewDeletedUnconfirmedUsersLog.description"><![CDATA[Allows viewing the log of automatically deleted unconfirmed users (email confirmation) in the ACP.]]></item>
+			<item name="wcf.acp.group.option.admin.user.canViewDeletedUnconfirmedUsersLog"><![CDATA[Can view logs for unconfirmed users]]></item>
+			<item name="wcf.acp.group.option.admin.user.canViewDeletedUnconfirmedUsersLog.description"><![CDATA[Allows viewing the log pages for resent activation emails and deleted unconfirmed users in the ACP.]]></item>
 		</category>
 		<category name="wcf.acp.menu">
+			<item name="wcf.acp.menu.link.resentActivationEmailLog"><![CDATA[Resent Activation Emails]]></item>
 			<item name="wcf.acp.menu.link.deletedUnconfirmedUsersLog"><![CDATA[Deleted Unconfirmed Users]]></item>
+		</category>
+		<category name="wcf.acp.resentActivationEmailLog">
+			<item name="wcf.acp.resentActivationEmailLog.title"><![CDATA[Resent Activation Emails Log]]></item>
+			<item name="wcf.acp.resentActivationEmailLog.noEntries"><![CDATA[No activation emails have been resent yet.]]></item>
+			<item name="wcf.acp.resentActivationEmailLog.userID"><![CDATA[User ID]]></item>
+			<item name="wcf.acp.resentActivationEmailLog.userID.click"><![CDATA[Click to copy the User ID]]></item>
+			<item name="wcf.acp.resentActivationEmailLog.registrationDate"><![CDATA[Registration Date]]></item>
+			<item name="wcf.acp.resentActivationEmailLog.resendEmailDate"><![CDATA[Resend Date]]></item>
+			<item name="wcf.acp.resentActivationEmailLog.email"><![CDATA[Email]]></item>
+			<item name="wcf.acp.resentActivationEmailLog.username"><![CDATA[Username]]></item>
 		</category>
 		<category name="wcf.acp.deletedUnconfirmedUsersLog">
 			<item name="wcf.acp.deletedUnconfirmedUsersLog.title"><![CDATA[Deleted Unconfirmed Users log]]></item>
 			<item name="wcf.acp.deletedUnconfirmedUsersLog.noEntries"><![CDATA[No unconfirmed users (email confirmation) have been automatically deleted yet.]]></item>
+			<item name="wcf.acp.deletedUnconfirmedUsersLog.userID"><![CDATA[User ID]]></item>
+			<item name="wcf.acp.deletedUnconfirmedUsersLog.userID.click"><![CDATA[Click to copy the User ID]]></item>
+			<item name="wcf.acp.deletedUnconfirmedUsersLog.userID.notAvailable"><![CDATA[User ID not available (old log entry before version 1.3.0)]]></item>
 			<item name="wcf.acp.deletedUnconfirmedUsersLog.deletionDate"><![CDATA[Deletion Date]]></item>
 			<item name="wcf.acp.deletedUnconfirmedUsersLog.registrationDate"><![CDATA[Registration Date]]></item>
 			<item name="wcf.acp.deletedUnconfirmedUsersLog.email"><![CDATA[Email]]></item>
@@ -29,6 +47,25 @@
 		<category name="wcf.acp.notification">
 			<item name="wcf.acp.notification.deletedUnconfirmedUsers.subject"><![CDATA[{$count} unconfirmed user(s) deleted]]></item>
 			<item name="wcf.acp.notification.deletedUnconfirmedUsers.message"><![CDATA[Hello {$username},<br><br>{$count} unconfirmed user(s) have been automatically deleted from the system.<br><br>{@$userList}<br><br>You can view further details in the <a href="{$logPageUrl}">ACP log page</a>.]]></item>
+			<item name="wcf.acp.notification.resentActivationEmails.subject"><![CDATA[{$count} reminder email(s) sent to unconfirmed users]]></item>
+			<item name="wcf.acp.notification.resentActivationEmails.message"><![CDATA[Hello {$username},<br><br>{$count} reminder email(s) for activation have been automatically sent to unconfirmed users.<br><br>{@$userList}<br><br>You can view further details in the <a href="{$logPageUrl}">ACP log page</a>.]]></item>
+		</category>
+		<category name="wcf.user.notification">
+			<item name="wcf.user.notification.reminderActivation.subject"><![CDATA[Reminder: Please activate your user account]]></item>
+			<item name="wcf.user.notification.reminderActivation.message"><![CDATA[Hello {$username},<br><br>This is a reminder about your registration on the website: {PAGE_TITLE}.<br><br>You have not yet completed your registration. Please activate your user account by clicking on the following link or by entering the activation code:<br><br><a href="{$activationLink}">Activate User Account</a><br><br>Your activation code is: {$activationCode}<br><br><strong>Important:</strong> If you do not activate your account within the next {$deleteDays} days, it will be automatically deleted.<br><br>{if $contactLink}If you have problems activating your user account, please contact us via our <a href="{$contactLink}">contact form</a>.{else}If you have problems activating your user account, please contact the administrator at: {MAIL_ADMIN_ADDRESS}.{/if} If you did not register with us, you can ignore this email.]]></item>
+			<item name="wcf.user.notification.reminderActivation.message.plaintext"><![CDATA[Hello {$username},
+
+This is a reminder about your registration on the website: {PAGE_TITLE}.
+
+You have not yet completed your registration. Please activate your user account by visiting the following link or by entering the activation code:
+
+{$activationLink}
+
+Your activation code is: {$activationCode}
+
+Important: If you do not activate your account within the next {$deleteDays} days, it will be automatically deleted.
+
+{if $contactLink}If you have problems activating your user account, please contact us via our contact form: {$contactLink}{else}If you have problems activating your user account, please contact the administrator at: {MAIL_ADMIN_ADDRESS}.{/if} If you did not register with us, you can ignore this email.]]></item>
 		</category>
 	</import>
 </language>

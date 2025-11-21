@@ -1,142 +1,244 @@
-# de.deinestrainreviews.autoDeleteUnconfirmedUsers
+# Automatische Löschung unbestätigter Benutzer
 
-Ein WoltLab-Plugin zur automatischen Löschung von Benutzern, die ihre E-Mail nicht innerhalb einer festgelegten Zeit bestätigt haben.
+> 🌐 **Language / Sprache**: [English](README.md) | [Deutsch](#readme)
 
-## Funktionen
+Ein WoltLab-Plugin zur automatischen Löschung von Benutzern, die ihre E-Mail-Adresse nicht innerhalb einer festgelegten Zeit bestätigt haben. Mit zweistufigem Löschprozess, optionalen Erinnerungs-E-Mails und umfassender Protokollierung.
 
-### ✅ Vollständig funktionsfähig (Version 1.1.1+)
-- Regelmäßige Prüfung unbestätigter Benutzer per Cronjob
-- Automatische Löschung nach einer konfigurierbaren Zeit
-- Löscht ausschließlich Benutzer, die sich nur in der Gruppe "Gäste" (ID 2) befinden
-- Benutzer mit zusätzlichen Gruppenzugehörigkeiten bleiben erhalten
-- ⚠️ **Wichtig**: Nur die Benutzer selbst werden gelöscht – ihre Inhalte (Beiträge, Dateianhänge, Konversationen etc.) bleiben im System erhalten
+[![Lizenz: GPL v3](https://img.shields.io/badge/Lizenz-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![WoltLab Plugin Store](https://img.shields.io/badge/WoltLab-Plugin%20Store-orange)](https://www.woltlab.com/)
+
+## 🚀 Aktuelle Version: 1.3.0
+
+### Hauptfunktionen
+
+- ✅ **Zweistufiger Löschprozess** - Optionale Erinnerungs-E-Mail vor der Löschung
+- ✅ **Umfassende Protokollierung** - Nachverfolgung gelöschter Benutzer und versendeter Erinnerungen
+- ✅ **DSGVO-konform** - Automatische Datenanonymisierung
+- ✅ **E-Mail-Benachrichtigungen** - Administratoren bleiben über Löschungen und Erinnerungen informiert
+- ✅ **Flexible Konfiguration** - Anpassbare Zeiträume und Verhaltensweisen
+- ✅ **Mehrsprachig** - Vollständige Unterstützung für Deutsch und Englisch
+
+<details>
+<summary><strong>📋 Vollständige Funktionsliste</strong></summary>
+
+### Kernfunktionen (v1.0.0+)
+- Automatische Löschung unbestätigter Benutzer per Cronjob
+- Konfigurierbare Löschfrist
+- Löscht nur Benutzer, die ausschließlich in der Gruppe "Gäste" (ID 2) sind
+- Erhält Benutzerinhalte (Beiträge, Dateianhänge, Konversationen)
 - Mehrsprachige Unterstützung (Deutsch & Englisch)
-- Einstellbare Optionen im Admin-Panel
-- Konfigurierbare maximale Anzahl von Benutzern pro Cronjob-Ausführung (max. 50 pro Durchlauf)
 
-### ✅ Vollständig funktionsfähig (Version 1.2.0)
-- **ACP-Log-Seite** - Anzeige aller gelöschten unbestätigten Benutzer im Administrationsbereich
-- **Sortierbare Log-Tabelle** - Sortierung nach ID, Benutzername, E-Mail, Registrierungsdatum oder Löschdatum
-- **Datenbank-Protokollierung** - Log-Einträge werden in der Datenbank gespeichert
-- **Automatische Log-Eintrag-Erstellung** - Log-Einträge werden automatisch bei der Löschung erstellt
-- **E-Mail-Benachrichtigungen** - Administratoren erhalten E-Mail-Benachrichtigungen bei gelöschten Benutzern
-- **DSGVO-konforme Datenanonymisierung** - Alle personenbezogenen Daten (Benutzernamen und E-Mail-Adressen) werden automatisch vor der Speicherung und in E-Mail-Benachrichtigungen anonymisiert
+### Erweiterte Funktionen (v1.1.0+)
+- Konfigurierbare Stapelgröße (max. 50 Benutzer pro Cronjob-Durchlauf)
+- Optimierung der Serverlast
 
-### 📋 Geplante Features
-- **Optionale Inhaltslöschung** - Eine optionale Funktion zum vollständigen Entfernen aller Inhalte gelöschter Benutzer (Beiträge, Dateianhänge etc.). Diese Funktion wird einstellbar sein, sodass Administratoren selbst entscheiden können, ob Inhalte zur besseren Lesbarkeit von Themen bestehen bleiben sollen oder vollständig entfernt werden.
-- **Erneuter Versand der Bestätigungsmail mit Löschhinweis** - Erneuter Versand der Bestätigungsmail samt Hinweis auf die Löschung. Damit könnte man Nutzer aktivieren, die schlicht vergessen hatten zu klicken.
+### Protokollierung & Benachrichtigungen (v1.2.0+)
+- ACP-Log-Seite für gelöschte Benutzer
+- Sortierbare Log-Tabelle (ID, Benutzername, E-Mail, Daten)
+- Datenbank-Protokollierung mit permanenter Speicherung
+- E-Mail-Benachrichtigungen an Administratoren
+- DSGVO-konforme Datenanonymisierung
 
-## Admin-Panel-Optionen
-Das Plugin fügt folgende Einstellungen im **WoltLab ACP (Administrationsbereich)** hinzu:
+### Zweistufiger Workflow (v1.3.0+)
+- Optionale Erinnerungs-E-Mail vor der Löschung
+- Separate Log-Seite für erneut versendete Aktivierungs-E-Mails
+- Getrennte Benachrichtigungseinstellungen (Erinnerung vs. Löschung)
+- Intelligente Kontaktformular-Erkennung
+- Professionelle HTML-E-Mail-Templates
 
-**Zu finden unter**: ACP → Konfiguration → Optionen → Benutzer → Registrierung
+</details>
 
-- **Automatische Löschung unbestätigter Benutzer aktivieren**  
-  Falls aktiviert, werden unbestätigte Benutzer nach einer festgelegten Anzahl von Tagen automatisch gelöscht.  
+## 📦 Installation
 
-- **Tage bis zur Löschung unbestätigter Benutzer**  
-  Anzahl der Tage, nach denen unbestätigte Benutzer entfernt werden.
+1. Lade die neueste Version aus dem [WoltLab Plugin Store](https://www.woltlab.com/) oder von [GitHub Releases](https://github.com/DeineStrainReviewsDev/de.deinestrainreviews.autoDeleteUnconfirmedUsers/releases) herunter
+2. Lade die `.tar.gz`-Datei über das WoltLab ACP hoch
+3. Konfiguriere die Einstellungen unter **ACP → Konfiguration → Optionen → Benutzer → Registrierung**
+4. Setze Berechtigungen für Benutzergruppen, die auf die Log-Seiten zugreifen sollen
 
-- **Benutzer pro Cronjob-Ausführung** (Neu ab Version 1.1.0)  
-  Maximale Anzahl von Benutzern, die pro Cronjob-Ausführung gelöscht werden dürfen, um die Serverlast zu reduzieren (maximal 50 Benutzer pro Durchlauf).
+## ⚙️ Konfiguration
 
-**Wichtige Hinweise**:
-- Das Plugin löscht Benutzer, die sich ausschließlich in der Gruppe "Gäste" (ID 2) befinden
-- Benutzer mit zusätzlichen Gruppenzugehörigkeiten bleiben erhalten
-- Nur die Benutzer selbst werden gelöscht – ihre Inhalte (Beiträge, Dateianhänge, Konversationen etc.) bleiben im System erhalten  
+### Ort
+**ACP → Konfiguration → Optionen → Benutzer → Registrierung**
 
-## Konfiguration
+### Verfügbare Optionen
 
-### Berechtigungen
-Das Plugin fügt eine neue Berechtigung zum Anzeigen des Logs gelöschter Benutzer hinzu:
+| Option | Beschreibung | Standard |
+|--------|--------------|----------|
+| **Automatische Löschung aktivieren** | Aktiviert die automatische Löschfunktion | Deaktiviert |
+| **Tage bis zum erneuten Versand der Aktivierungs-E-Mail** | Tage vor dem Versand der Erinnerungs-E-Mail (0 = deaktiviert, direkte Löschung) | 0 |
+| **Tage bis zur Löschung** | Tage nach der Erinnerung bis zur endgültigen Löschung | 7 |
+| **Benutzer pro Cronjob-Ausführung** | Maximale Anzahl verarbeiteter Benutzer pro Durchlauf (max. 50) | 10 |
+| **E-Mail-Benachrichtigung (Erinnerungen)** | Benachrichtigt Admins beim Versand von Erinnerungs-E-Mails | Aktiviert |
+| **E-Mail-Benachrichtigung (Löschungen)** | Benachrichtigt Admins bei gelöschten Benutzern | Aktiviert |
 
-- **Kann Log der automatischen Löschung unbestätigter Benutzer (E-Mail-Bestätigung) sehen**  
-  Zu finden unter: ACP → Benutzerverwaltung → Benutzergruppen → [Gruppe auswählen] → Administrative Rechte → Benutzer  
-  Diese Berechtigung erlaubt es Benutzern, das Log der automatisch gelöschten unbestätigten Benutzer im ACP anzuzeigen.
+<details>
+<summary><strong>🔧 Konfigurationsbeispiele</strong></summary>
 
-### Zugriff auf die Log-Seite
-Nach der Installation können Sie auf die Log-Seite zugreifen unter:
-- **ACP → Benutzerverwaltung → Gelöschte unbestätigte Benutzer**
+### Beispiel 1: Zweistufiger Prozess (Empfohlen)
+```
+Tage bis zum erneuten Versand der Aktivierungs-E-Mail: 7
+Tage bis zur Löschung: 7
+```
+**Ergebnis:** Benutzer registriert sich → Nach 7 Tagen: Erinnerungs-E-Mail → Nach weiteren 7 Tagen (gesamt 14): Löschung
 
-Die Log-Seite zeigt:
-- Benutzer-ID (logID)
-- Benutzername
-- E-Mail-Adresse
+### Beispiel 2: Direkte Löschung (Legacy-Modus)
+```
+Tage bis zum erneuten Versand der Aktivierungs-E-Mail: 0
+Tage bis zur Löschung: 7
+```
+**Ergebnis:** Benutzer registriert sich → Nach 7 Tagen: Direkte Löschung (keine Erinnerung)
+
+### Beispiel 3: Erweiterte Schonfrist
+```
+Tage bis zum erneuten Versand der Aktivierungs-E-Mail: 14
+Tage bis zur Löschung: 14
+```
+**Ergebnis:** Benutzer registriert sich → Nach 14 Tagen: Erinnerungs-E-Mail → Nach weiteren 14 Tagen (gesamt 28): Löschung
+
+</details>
+
+## 📊 Log-Seiten
+
+### Log gelöschter Benutzer
+**Ort:** ACP → Benutzer → Gelöschte unbestätigte Benutzer
+
+Zeigt alle gelöschten Benutzer mit:
+- Benutzer-ID
+- Anonymisierter Benutzername
+- Anonymisierte E-Mail
 - Registrierungsdatum
 - Löschdatum
 
-Alle Spalten sind sortierbar, und die Tabelle ist paginiert (standardmäßig 100 Einträge pro Seite).
+### Log erneut versendeter Aktivierungs-E-Mails
+**Ort:** ACP → Benutzer → Erneut versendete Aktivierungs-E-Mails
 
-### E-Mail-Benachrichtigungen ✅
-Administratoren erhalten E-Mail-Benachrichtigungen, wenn Benutzer gelöscht werden. Die Benachrichtigung enthält:
-- Anzahl der gelöschten Benutzer
-- Personalisierte Begrüßung mit Administrator-Benutzername
-- Link zur Anzeige der Details in der ACP-Log-Seite
+Zeigt alle versendeten Erinnerungs-E-Mails mit:
+- Benutzer-ID
+- Anonymisierter Benutzername
+- Anonymisierte E-Mail
+- Registrierungsdatum
+- Versanddatum
 
-Benachrichtigungen werden automatisch an alle Benutzer in Administratorgruppen gesendet, wenn unbestätigte Benutzer gelöscht werden.
+### Berechtigungen
+Berechtigungen setzen unter:
+**ACP → Benutzergruppen → [Gruppe auswählen] → Administrative Rechte → Benutzer**
 
-### DSGVO-konforme Datenanonymisierung ✅ (Version 1.2.0+)
+Berechtigung: *Kann Log der automatischen Löschung unbestätigter Benutzer sehen*
 
-Dieses Plugin implementiert eine umfassende Datenanonymisierung, um die DSGVO-Konformität sicherzustellen. Alle personenbezogenen Daten (Benutzernamen und E-Mail-Adressen) werden automatisch anonymisiert, bevor sie in der Datenbank gespeichert oder per E-Mail-Benachrichtigung versendet werden.
+## 🔒 DSGVO-Konformität
 
-#### Anonymisierung von Benutzernamen
+Alle personenbezogenen Daten werden automatisch vor der Speicherung und in E-Mail-Benachrichtigungen anonymisiert.
 
-Benutzernamen werden mit einem intelligenten Maskierungsalgorithmus anonymisiert, der die partielle Lesbarkeit für administrative Zwecke erhält, während die Privatsphäre gewährleistet wird:
+<details>
+<summary><strong>📝 Anonymisierungsdetails</strong></summary>
 
-- **Kurze Benutzernamen (≤ 4 Zeichen)**: Vollständig maskiert
-  - Beispiel: `test` → `****`
-  
-- **Mittlere Benutzernamen (5-8 Zeichen)**: Erste 2 Zeichen + Maske + letzte 2 Zeichen
-  - Beispiel: `username` → `us***me`
-  
-- **Lange Benutzernamen (9+ Zeichen)**: Erste 2 Zeichen + Maske + letzte 4 Zeichen
-  - Beispiel: `johnsmith123` → `jo***h123`
+### Anonymisierung von Benutzernamen
 
-Dieser Ansatz ermöglicht es Administratoren, Benutzer ungefähr zu identifizieren (z.B. um "johnsmith" von "johndoe" zu unterscheiden), während personenbezogene Daten geschützt werden.
+| Länge | Muster | Beispiel |
+|-------|--------|----------|
+| ≤ 4 Zeichen | Vollständig maskiert | `test` → `****` |
+| 5-8 Zeichen | Erste 2 + Maske + letzte 2 | `username` → `us***me` |
+| 9+ Zeichen | Erste 2 + Maske + letzte 4 | `johnsmith123` → `jo***h123` |
 
-#### Anonymisierung von E-Mail-Adressen
+### Anonymisierung von E-Mail-Adressen
 
-E-Mail-Adressen werden strenger anonymisiert, um maximalen Datenschutz zu gewährleisten:
+**Muster:** Erstes Zeichen des lokalen Teils + Maske @ erste 2 Zeichen der Domain + Maske . erste(s) Zeichen der TLD + Maske
 
-**Lokaler Teil (vor @):**
-- Zeigt nur das erste Zeichen
-- Beispiel: `testuser` → `t***`
-
-**Domain-Name (vor TLD):**
-- Zeigt die ersten 2 Zeichen + Maske
-- Beispiel: `example` → `ex***`
-
-**Top-Level-Domain (TLD):**
-- 1 Zeichen: Vollständig maskiert (`*`)
-- 2-3 Zeichen: Erstes Zeichen + Maske (z.B. `i***` für `.invalid`)
-- 4+ Zeichen: Erste 2 Zeichen + Maske (z.B. `co***` für `.com`)
-
-**Vollständige Beispiele:**
+**Beispiele:**
 - `testuser@example.com` → `t***@ex***.co***`
-- `admin@domain.invalid` → `a***@do***.in***`
-- `john@site.org` → `j***@si***.o***`
+- `admin@domain.org` → `a***@do***.o***`
 
-#### Wo die Anonymisierung angewendet wird
+### Anwendungsbereiche
+1. Datenbank-Log-Einträge
+2. E-Mail-Benachrichtigungen an Administratoren
+3. ACP-Log-Seiten-Anzeige
 
-1. **Datenbank-Log-Einträge**: Alle Benutzernamen und E-Mail-Adressen, die in der Log-Tabelle gespeichert werden, sind anonymisiert
-2. **E-Mail-Benachrichtigungen**: Die in E-Mail-Benachrichtigungen an Administratoren enthaltene Benutzerliste enthält nur anonymisierte Daten
-3. **ACP-Log-Anzeige**: Die Log-Seite zeigt anonymisierte Daten an (wie in der Datenbank gespeichert)
+</details>
 
-#### Vorteile
+## 📝 Changelog
 
-- **DSGVO-Konformität**: Personenbezogene Daten werden gemäß DSGVO-Anforderungen geschützt
-- **Datenschutz**: E-Mail-Adressen werden stark anonymisiert, um eine Identifikation zu verhindern
-- **Administrative Nützlichkeit**: Benutzernamen bleiben teilweise lesbar für administrative Zwecke
-- **Automatische Verarbeitung**: Die Anonymisierung erfolgt automatisch während der Löschung - keine manuelle Intervention erforderlich
-- **Konsistente Anwendung**: Die gleichen Anonymisierungsregeln gelten sowohl für die Datenbankspeicherung als auch für E-Mail-Benachrichtigungen
+<details>
+<summary><strong>Version 1.3.0 (2025-11-21)</strong> - Aktuelle Version</summary>
 
-## Installation
-1. Lade die neueste `.tar.gz`-Version aus dem [Releases](https://github.com/DeineStrainReviewsDev/de.deinestrainreviews.autoDeleteUnconfirmedUsers/releases) Bereich herunter.
-2. Lade die `.tar.gz`-Datei über das WoltLab ACP hoch.
-3. Aktiviere das Plugin und konfiguriere die gewünschte Wartezeit bis zur Löschung.
-4. Konfiguriere die Berechtigungen für Benutzergruppen, die Zugriff auf die Log-Seite haben sollen.
+### ✨ Neue Funktionen
+- Zweistufiger Löschprozess mit optionalen Erinnerungs-E-Mails
+- Neue Datenbanktabelle zur Nachverfolgung erneut versendeter Aktivierungs-E-Mails
+- Separate ACP-Log-Seite für Erinnerungs-E-Mails
+- Getrennte E-Mail-Benachrichtigungseinstellungen (Erinnerung vs. Löschung)
+- Professionelle HTML-E-Mail-Templates
+- Intelligente Kontaktformular-Modul-Erkennung
+- Erweiterte Admin-Benachrichtigungen für beide Workflow-Stufen
 
-## Lizenz
+### 🔧 Technische Änderungen
+- Tabelle `wcf1_resent_activation_email_log` hinzugefügt
+- Migrations-Script für Upgrade von v1.2.0 → v1.3.0
+- Neue Konfigurationsoptionen für zweistufigen Workflow
+- Aktualisierte Sprachdateien (EN/DE)
+
+### 📦 Release
+- Genehmigt und im WoltLab Plugin Store veröffentlicht
+
+</details>
+
+<details>
+<summary><strong>Version 1.2.0 (2024)</strong></summary>
+
+### ✨ Neue Funktionen
+- ACP-Log-Seite für gelöschte Benutzer
+- Sortierbare Log-Tabelle
+- Datenbank-Protokollierung mit permanenter Speicherung
+- E-Mail-Benachrichtigungen an Administratoren
+- DSGVO-konforme Datenanonymisierung
+
+### 🔧 Technische Änderungen
+- Tabelle `wcf1_deleted_unconfirmed_user_log` hinzugefügt
+- Neues Berechtigungssystem für Log-Zugriff
+- Anonymisierungsalgorithmen für Benutzernamen und E-Mails
+
+</details>
+
+<details>
+<summary><strong>Version 1.1.0 (2024)</strong></summary>
+
+### ✨ Neue Funktionen
+- Konfigurierbare Stapelgröße (max. 50 Benutzer pro Durchlauf)
+- Optimierung der Serverlast
+
+</details>
+
+<details>
+<summary><strong>Version 1.0.0 (2024)</strong></summary>
+
+### ✨ Erstes Release
+- Automatische Löschung unbestätigter Benutzer
+- Konfigurierbare Löschfrist
+- Gruppenbasierte Filterung (nur Gäste)
+- Mehrsprachige Unterstützung (DE/EN)
+
+</details>
+
+## 🔮 Geplante Funktionen
+
+- **Optionale Inhaltslöschung** - Konfigurierbare Entfernung aller benutzergenerierter Inhalte (Beiträge, Dateianhänge usw.)
+
+## ⚠️ Wichtige Hinweise
+
+- Es werden nur Benutzer gelöscht, die **ausschließlich** in der Gruppe "Gäste" (ID 2) sind
+- Benutzer mit zusätzlichen Gruppenmitgliedschaften werden **erhalten**
+- Benutzerinhalte (Beiträge, Dateianhänge, Konversationen) **bleiben** im System erhalten
+- Der Cronjob muss in WoltLab ordnungsgemäß konfiguriert sein
+
+## 📄 Lizenz
+
 Dieses Projekt steht unter der **GNU General Public License v3.0 (GPL-3.0)**.  
 Siehe die [LICENSE](LICENSE)-Datei für Details.
 
+## 🔗 Links
+
+- [WoltLab Plugin Store](https://www.woltlab.com/)
+- [GitHub Repository](https://github.com/DeineStrainReviewsDev/de.deinestrainreviews.autoDeleteUnconfirmedUsers)
+- [Probleme melden](https://github.com/DeineStrainReviewsDev/de.deinestrainreviews.autoDeleteUnconfirmedUsers/issues)
+
+---
+
+**Mit ❤️ für die WoltLab-Community erstellt**

@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/6.0/acpMenu.xsd">
 	<import>
+		<acpmenuitem name="wcf.acp.menu.link.resentActivationEmailLog">
+			<controller>wcf\acp\page\ResentActivationEmailLogPage</controller>
+			<parent>wcf.acp.menu.link.user.management</parent>
+			<showorder>5</showorder>
+		</acpmenuitem>
 		<acpmenuitem name="wcf.acp.menu.link.deletedUnconfirmedUsersLog">
 			<controller>wcf\acp\page\DeletedUnconfirmedUsersLogPage</controller>
 			<parent>wcf.acp.menu.link.user.management</parent>
-			<showorder>5</showorder>
+			<showorder>6</showorder>
 		</acpmenuitem>
 	</import>
 </data>

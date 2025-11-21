@@ -4,23 +4,41 @@
 		<category name="wcf.acp.option">
 			<item name="wcf.acp.option.enable_auto_delete_unconfirmed_users"><![CDATA[Automatische Löschung unbestätigter Benutzer aktivieren]]></item>
 			<item name="wcf.acp.option.enable_auto_delete_unconfirmed_users.description"><![CDATA[Wenn diese Option aktiviert ist, werden unbestätigte Benutzer nach der eingestellten Anzahl an Tagen automatisch gelöscht.]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_resend_email_days"><![CDATA[Tage bis zum erneuten Senden der Aktivierungsmail]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_resend_email_days.description"><![CDATA[Anzahl der Tage nach der Registrierung, nach denen die Aktivierungsmail erneut gesendet wird. Wenn auf 0 gesetzt, wird keine Mail erneut gesendet und Benutzer werden direkt nach den konfigurierten Tagen gelöscht.]]></item>
 			<item name="wcf.acp.option.auto_delete_unconfirmed_users_days"><![CDATA[Tage bis zur Löschung unbestätigter Benutzer]]></item>
-			<item name="wcf.acp.option.auto_delete_unconfirmed_users_days.description"><![CDATA[Anzahl der Tage, nach denen unbestätigte Benutzer automatisch gelöscht werden.]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_days.description"><![CDATA[Anzahl der Tage, nach denen unbestätigte Benutzer automatisch gelöscht werden. Wenn die Option zum erneuten Senden aktiviert ist, wird diese Anzahl ab dem Zeitpunkt des erneuten Sendens gezählt.]]></item>
 			<item name="wcf.acp.option.auto_delete_unconfirmed_users_limit"><![CDATA[Benutzer pro Cronjob-Ausführung]]></item>
-			<item name="wcf.acp.option.auto_delete_unconfirmed_users_limit.description"><![CDATA[Legt fest, wie viele Benutzer pro Cronjob-Ausführung gelöscht werden dürfen, um die Serverlast zu reduzieren.]]></item>
-			<item name="wcf.acp.option.auto_delete_unconfirmed_users_send_email"><![CDATA[E-Mail-Benachrichtigungen an Administratoren senden]]></item>
-			<item name="wcf.acp.option.auto_delete_unconfirmed_users_send_email.description"><![CDATA[Wenn diese Option aktiviert ist, werden Administratoren per E-Mail benachrichtigt, wenn unbestätigte Benutzer automatisch gelöscht werden.]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_limit.description"><![CDATA[Legt fest, wie viele Benutzer pro Cronjob-Ausführung verarbeitet werden dürfen, um die Serverlast zu reduzieren. Dieses Limit gilt sowohl für das erneute Versenden von Aktivierungsmails als auch für das Löschen von Benutzern, die bereits eine Erinnerungs-E-Mail erhalten haben.]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_send_email_resent"><![CDATA[E-Mail-Benachrichtigung beim Versand von Erinnerungs-E-Mails]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_send_email_resent.description"><![CDATA[Wenn diese Option aktiviert ist, werden Administratoren per E-Mail benachrichtigt, wenn Erinnerungs-E-Mails zur Aktivierung an unbestätigte Benutzer versendet werden.]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_send_email_deleted"><![CDATA[E-Mail-Benachrichtigung bei Löschung von Benutzern]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_send_email_deleted.description"><![CDATA[Wenn diese Option aktiviert ist, werden Administratoren per E-Mail benachrichtigt, wenn unbestätigte Benutzer automatisch gelöscht werden.]]></item>
 		</category>
 		<category name="wcf.acp.group">
-			<item name="wcf.acp.group.option.admin.user.canViewDeletedUnconfirmedUsersLog"><![CDATA[Kann Log der automatischen Löschung unbestätigter Benutzer (E-Mail-Bestätigung) sehen]]></item>
-			<item name="wcf.acp.group.option.admin.user.canViewDeletedUnconfirmedUsersLog.description"><![CDATA[Erlaubt das Anzeigen des Logs der automatisch gelöschten unbestätigten Benutzer (E-Mail-Bestätigung) im ACP.]]></item>
+			<item name="wcf.acp.group.option.admin.user.canViewDeletedUnconfirmedUsersLog"><![CDATA[Kann Logs für unbestätigte Benutzer sehen]]></item>
+			<item name="wcf.acp.group.option.admin.user.canViewDeletedUnconfirmedUsersLog.description"><![CDATA[Erlaubt das Anzeigen der Log-Seiten für erneut versendete Aktivierungsmails und gelöschte unbestätigte Benutzer im ACP.]]></item>
 		</category>
 		<category name="wcf.acp.menu">
+			<item name="wcf.acp.menu.link.resentActivationEmailLog"><![CDATA[Erneut gesendete Aktivierungsmails]]></item>
 			<item name="wcf.acp.menu.link.deletedUnconfirmedUsersLog"><![CDATA[Gelöschte unbestätigte Benutzer]]></item>
+		</category>
+		<category name="wcf.acp.resentActivationEmailLog">
+			<item name="wcf.acp.resentActivationEmailLog.title"><![CDATA[Erneut gesendete Aktivierungsmails Log]]></item>
+			<item name="wcf.acp.resentActivationEmailLog.noEntries"><![CDATA[Es wurden noch keine Aktivierungsmails erneut gesendet.]]></item>
+			<item name="wcf.acp.resentActivationEmailLog.userID"><![CDATA[Benutzer-ID]]></item>
+			<item name="wcf.acp.resentActivationEmailLog.userID.click"><![CDATA[Klicken Sie, um die Benutzer-ID zu kopieren]]></item>
+			<item name="wcf.acp.resentActivationEmailLog.registrationDate"><![CDATA[Registrierungsdatum]]></item>
+			<item name="wcf.acp.resentActivationEmailLog.resendEmailDate"><![CDATA[Datum erneutes Senden]]></item>
+			<item name="wcf.acp.resentActivationEmailLog.email"><![CDATA[E-Mail]]></item>
+			<item name="wcf.acp.resentActivationEmailLog.username"><![CDATA[Benutzername]]></item>
 		</category>
 		<category name="wcf.acp.deletedUnconfirmedUsersLog">
 			<item name="wcf.acp.deletedUnconfirmedUsersLog.title"><![CDATA[Gelöschte unbestätigte Benutzer Log]]></item>
 			<item name="wcf.acp.deletedUnconfirmedUsersLog.noEntries"><![CDATA[Es wurden noch keine unbestätigten Benutzer (E-Mail-Bestätigung) automatisch gelöscht.]]></item>
+			<item name="wcf.acp.deletedUnconfirmedUsersLog.userID"><![CDATA[Benutzer-ID]]></item>
+			<item name="wcf.acp.deletedUnconfirmedUsersLog.userID.click"><![CDATA[Klicken Sie, um die Benutzer-ID zu kopieren]]></item>
+			<item name="wcf.acp.deletedUnconfirmedUsersLog.userID.notAvailable"><![CDATA[Benutzer-ID nicht verfügbar (alter Log-Eintrag vor Version 1.3.0)]]></item>
 			<item name="wcf.acp.deletedUnconfirmedUsersLog.deletionDate"><![CDATA[Löschdatum]]></item>
 			<item name="wcf.acp.deletedUnconfirmedUsersLog.registrationDate"><![CDATA[Registrierungsdatum]]></item>
 			<item name="wcf.acp.deletedUnconfirmedUsersLog.email"><![CDATA[E-Mail]]></item>
@@ -29,6 +47,25 @@
 		<category name="wcf.acp.notification">
 			<item name="wcf.acp.notification.deletedUnconfirmedUsers.subject"><![CDATA[{$count} unbestätigte(r) Benutzer gelöscht]]></item>
 			<item name="wcf.acp.notification.deletedUnconfirmedUsers.message"><![CDATA[Hallo {$username},<br><br>{$count} unbestätigte(r) Benutzer wurden automatisch aus dem System gelöscht.<br><br>{@$userList}<br><br>Sie können weitere Details auf der <a href="{$logPageUrl}">ACP-Log-Seite</a> einsehen.]]></item>
+			<item name="wcf.acp.notification.resentActivationEmails.subject"><![CDATA[{$count} Erinnerungs-E-Mail(s) an unbestätigte Benutzer versendet]]></item>
+			<item name="wcf.acp.notification.resentActivationEmails.message"><![CDATA[Hallo {$username},<br><br>{$count} Erinnerungs-E-Mail(s) zur Aktivierung wurden automatisch an unbestätigte Benutzer versendet.<br><br>{@$userList}<br><br>Sie können weitere Details auf der <a href="{$logPageUrl}">ACP-Log-Seite</a> einsehen.]]></item>
+		</category>
+		<category name="wcf.user.notification">
+			<item name="wcf.user.notification.reminderActivation.subject"><![CDATA[Erinnerung: Bitte aktivieren Sie Ihr Benutzerkonto]]></item>
+			<item name="wcf.user.notification.reminderActivation.message"><![CDATA[Hallo {$username},<br><br>dies ist eine Erinnerung an Ihre Registrierung auf der Website: {PAGE_TITLE}.<br><br>Sie haben Ihre Registrierung bisher noch nicht abgeschlossen. Bitte aktivieren Sie Ihr Benutzerkonto, indem Sie auf den folgenden Link klicken oder den Aktivierungscode eingeben:<br><br><a href="{$activationLink}">Benutzerkonto aktivieren</a><br><br>Ihr Aktivierungscode lautet: {$activationCode}<br><br><strong>Wichtig:</strong> Wenn Sie Ihr Konto nicht innerhalb der nächsten {$deleteDays} Tage aktivieren, wird es automatisch gelöscht.<br><br>{if $contactLink}Wenn Sie Probleme mit der Aktivierung Ihres Benutzerkontos haben, dann wenden Sie sich bitte über unser <a href="{$contactLink}">Kontaktformular</a> an uns.{else}Wenn Sie Probleme mit der Aktivierung Ihres Benutzerkontos haben, dann wenden Sie sich bitte an den Administrator unter: {MAIL_ADMIN_ADDRESS}.{/if} Wenn Sie sich nicht bei uns registriert haben, dann können Sie diese E-Mail ignorieren.]]></item>
+			<item name="wcf.user.notification.reminderActivation.message.plaintext"><![CDATA[Hallo {$username},
+
+dies ist eine Erinnerung an Ihre Registrierung auf der Website: {PAGE_TITLE}.
+
+Sie haben Ihre Registrierung bisher noch nicht abgeschlossen. Bitte aktivieren Sie Ihr Benutzerkonto, indem Sie den folgenden Link aufrufen oder den Aktivierungscode eingeben:
+
+{$activationLink}
+
+Ihr Aktivierungscode lautet: {$activationCode}
+
+Wichtig: Wenn Sie Ihr Konto nicht innerhalb der nächsten {$deleteDays} Tage aktivieren, wird es automatisch gelöscht.
+
+{if $contactLink}Wenn Sie Probleme mit der Aktivierung Ihres Benutzerkontos haben, dann wenden Sie sich bitte über unser Kontaktformular an uns: {$contactLink}{else}Wenn Sie Probleme mit der Aktivierung Ihres Benutzerkontos haben, dann wenden Sie sich bitte an den Administrator unter: {MAIL_ADMIN_ADDRESS}.{/if} Wenn Sie sich nicht bei uns registriert haben, dann können Sie diese E-Mail ignorieren.]]></item>
 		</category>
 	</import>
 </language>

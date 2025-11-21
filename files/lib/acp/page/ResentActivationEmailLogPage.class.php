@@ -2,23 +2,23 @@
 
 namespace wcf\acp\page;
 
-use wcf\data\deletedUnconfirmedUsersLog\DeletedUnconfirmedUserLogList;
+use wcf\data\resentActivationEmailLog\ResentActivationEmailLogList;
 use wcf\page\SortablePage;
 
 /**
- * Shows the log of deleted unconfirmed users.
+ * Shows the log of resent activation emails.
  * 
  * @author DeineStrainReviews.de Development Team
  * @copyright 2025 DeineStrainReviews.de
  * @license https://www.gnu.org/licenses/gpl-3.0.txt
  * 
- * @property DeletedUnconfirmedUserLogList $objectList
+ * @property ResentActivationEmailLogList $objectList
  */
-class DeletedUnconfirmedUsersLogPage extends SortablePage {
+class ResentActivationEmailLogPage extends SortablePage {
 	/**
 	 * @inheritDoc
 	 */
-	public $activeMenuItem = 'wcf.acp.menu.link.deletedUnconfirmedUsersLog';
+	public $activeMenuItem = 'wcf.acp.menu.link.resentActivationEmailLog';
 	
 	/**
 	 * @inheritDoc
@@ -43,16 +43,16 @@ class DeletedUnconfirmedUsersLogPage extends SortablePage {
 	/**
 	 * @inheritDoc
 	 */
-	public $validSortFields = ['logID', 'userID', 'username', 'email', 'registrationDate', 'deletionDate'];
+	public $validSortFields = ['logID', 'userID', 'registrationDate', 'resendEmailDate'];
 	
 	/**
 	 * @inheritDoc
 	 */
-	public $objectListClassName = DeletedUnconfirmedUserLogList::class;
+	public $objectListClassName = ResentActivationEmailLogList::class;
 	
 	/**
 	 * @inheritDoc
 	 */
-	public $templateName = 'deletedUnconfirmedUsersLog';
+	public $templateName = 'resentActivationEmailLog';
 }
 

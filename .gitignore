@@ -1,18 +1,30 @@
-# Ignore all tar and tar.gz files (build archives)
+# Ignore all markdown files (except README and LICENSE)
+*.md
+!README*.md
+!LICENSE.md
+
+# Ignore development and configuration files
+composer.json
+composer.lock
+*.code-workspace
+.vscode/
+.intelephense/
+
+# Ignore build artifacts
 *.tar
 *.tar.gz
 
-# Ignore Visual Studio Code settings and workspace files
-.vscode/
-.vscode/*
-*.code-workspace
+# Ignore log files
+logs/
+*.log
 
-# Ignore Windows Zone Identifier files
+# Ignore temporary and system files
 *:Zone.Identifier
+.DS_Store
+*.tmp
+*.bak
+*.swp
+*~
 
-# Ignore plugin store description files (for local use only)
-PLUGIN_DESCRIPTION_*.md
+# Ignore plugin store files
 PLUGIN_STORE_*.txt
-
-# Ignore pull request description files (for local use only)
-PR_DESCRIPTION.md
