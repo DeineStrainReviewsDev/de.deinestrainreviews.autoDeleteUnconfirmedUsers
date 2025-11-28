@@ -6,10 +6,15 @@
 			<parent>wcf.acp.menu.link.user.management</parent>
 			<showorder>5</showorder>
 		</acpmenuitem>
+		<acpmenuitem name="wcf.acp.menu.link.legacyAccountLog">
+			<controller>wcf\acp\page\LegacyAccountLogPage</controller>
+			<parent>wcf.acp.menu.link.user.management</parent>
+			<showorder>6</showorder>
+		</acpmenuitem>
 		<acpmenuitem name="wcf.acp.menu.link.deletedUnconfirmedUsersLog">
 			<controller>wcf\acp\page\DeletedUnconfirmedUsersLogPage</controller>
 			<parent>wcf.acp.menu.link.user.management</parent>
-			<showorder>6</showorder>
+			<showorder>7</showorder>
 		</acpmenuitem>
 	</import>
 </data>

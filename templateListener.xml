@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/templatelistener.xsd">
+	<import>
+		<templatelistener name="acpStyleAutoDeleteUnconfirmedUsers">
+			<environment>admin</environment>
+			<templatename>header</templatename>
+			<eventname>stylesheets</eventname>
+			<templatecode><![CDATA[
+<link href="{$__wcf->getPath()}acp/style/autoDeleteUnconfirmedUsers.css" type="text/css" rel="stylesheet">
+			]]></templatecode>
+			<nice>0</nice>
+		</templatelistener>
+	</import>
+</data>

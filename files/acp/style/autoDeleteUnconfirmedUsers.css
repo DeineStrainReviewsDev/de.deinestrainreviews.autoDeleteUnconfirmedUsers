@@ -1,0 +1,125 @@
+/**
+ * Modern ACP Styles for Auto Delete Unconfirmed Users Plugin
+ * @author DeineStrainReviews.de Development Team
+ */
+
+/* Basic layout for all filter containers */
+.deletedUnconfirmedUsersLogFilter .section,
+.legacyAccountLogFilter .section,
+.resentActivationEmailLogFilter .section {
+    padding-bottom: 10px;
+}
+
+/* Optimize form grids: Flexbox with wrapping for the main grid */
+.deletedUnconfirmedUsersLogFilter .row,
+.legacyAccountLogFilter .row,
+.resentActivationEmailLogFilter .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start; /* FIX: Aligns columns to the top so inputs sit at same height */
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+/* Column spacing and basic behavior */
+.deletedUnconfirmedUsersLogFilter [class*='col-'],
+.legacyAccountLogFilter [class*='col-'],
+.resentActivationEmailLogFilter [class*='col-'] {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 15px;
+}
+
+/* Ensure DL/DT/DD reset for consistent alignment */
+.formGrid dl {
+    margin: 0;
+    width: 100%;
+}
+
+.formGrid dl dd {
+    margin: 0; /* Removes default margins that might shift inputs */
+    width: 100%;
+}
+
+/* DATE RANGE INPUTS: Force horizontal layout */
+.dateRangeInput {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important; /* Critical: prevents stacking */
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+/* Force inputs to behave as flex items and sit side-by-side */
+.dateRangeInput input[type="date"],
+.dateRangeInput input[type="text"] {
+    display: inline-block !important;
+    flex: 1 1 auto !important; /* Grow to fill space */
+    width: auto !important;    /* Override WSC 100% width default */
+    min-width: 0 !important;   /* Allow shrinking if necessary */
+    margin-bottom: 0 !important; /* Remove default bottom margin inside the flex container */
+    height: 38px; /* Enforce consistent height matching standard inputs */
+    box-sizing: border-box;
+}
+
+/* Make sure standard inputs (UserID, Select) match the height */
+.formGrid input[type="number"],
+.formGrid select {
+    height: 38px;
+    box-sizing: border-box;
+}
+
+/* The separator dash */
+.dateRangeSeparator {
+    flex: 0 0 auto;
+    color: #666;
+    padding: 0 5px;
+    font-weight: bold;
+    line-height: 38px; /* Vertically center the dash */
+}
+
+/* Label Styling - prevent truncation */
+.formGrid dl dt label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    margin-bottom: 5px;
+    line-height: 1.5; /* Consistent line height for labels */
+}
+
+/* RESPONSIVE ADJUSTMENTS */
+
+/* User ID field */
+input#userID {
+    min-width: 60px;
+}
+
+/* Mobile optimization (up to 768px) */
+@media screen and (max-width: 768px) {
+    /* Stack date inputs vertically on small mobile screens only */
+    .dateRangeInput {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 5px;
+    }
+
+    .dateRangeSeparator {
+        display: none; /* Hide separator on mobile */
+    }
+
+    .dateRangeInput input[type="date"],
+    .dateRangeInput input[type="text"] {
+        width: 100% !important;
+        margin-bottom: 5px !important;
+    }
+
+    /* Force columns to full width */
+    .deletedUnconfirmedUsersLogFilter [class*='col-'],
+    .legacyAccountLogFilter [class*='col-'],
+    .resentActivationEmailLogFilter [class*='col-'] {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}

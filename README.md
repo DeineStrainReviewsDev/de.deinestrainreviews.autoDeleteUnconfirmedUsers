@@ -7,10 +7,12 @@ A WoltLab plugin that automatically deletes unconfirmed users after a configurab
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![WoltLab Plugin Store](https://img.shields.io/badge/WoltLab-Plugin%20Store-orange)](https://www.woltlab.com/)
 
-## 🚀 Current Version: 1.3.0
+## 🚀 Current Version: 1.4.0
 
 ### Key Features
 
+- ✅ **Email Reputation Protection** - NEW in v1.4.0: Protect your server from bounces and spam traps
+- ✅ **Silent Legacy Deletion** - Automatically clean up old "ghost accounts" without risking your email reputation
 - ✅ **Two-Stage Deletion Workflow** - Optional reminder email before deletion
 - ✅ **Comprehensive Logging** - Track deleted users and sent reminder emails
 - ✅ **GDPR-Compliant** - Automatic data anonymization
@@ -46,6 +48,13 @@ A WoltLab plugin that automatically deletes unconfirmed users after a configurab
 - Intelligent contact form detection
 - Professional HTML email templates
 
+### Email Reputation Protection (v1.4.0+)
+- Configurable maximum age threshold for email sending
+- Silent deletion mode for legacy accounts (no email sent)
+- Safety quarantine option (ignore old accounts)
+- Separate admin notifications for legacy deletions
+- Automatic filtering of risky accounts from reminder workflow
+
 </details>
 
 ## 📦 Installation
@@ -70,6 +79,8 @@ A WoltLab plugin that automatically deletes unconfirmed users after a configurab
 | **Users per cron execution** | Maximum users processed per run (max 50) | 10 |
 | **Email notification (reminders)** | Notify admins when reminder emails are sent | Enabled |
 | **Email notification (deletions)** | Notify admins when users are deleted | Enabled |
+| **Maximum age for email sending** ⭐ NEW | Maximum age (days) for accounts that receive emails (0 = disabled) | 0 |
+| **Silent deletion of Legacy Accounts** ⭐ NEW | Delete old accounts without email to protect reputation | Disabled |
 
 <details>
 <summary><strong>🔧 Configuration Examples</strong></summary>
@@ -94,6 +105,17 @@ Days until resending activation email: 14
 Days until deletion: 14
 ```
 **Result:** User registers → After 14 days: reminder email → After another 14 days (total 28): deletion
+
+### Example 4: With Reputation Protection (v1.4.0+) 🛡️
+```
+Days until resending activation email: 7
+Days until deletion: 7
+Maximum age for email sending: 365
+Silent deletion of Legacy Accounts: Enabled
+```
+**Result:** 
+- Recent users (< 365 days): Normal workflow with reminder → deletion after 14 days
+- Legacy users (> 365 days): **Silently deleted** immediately (no email sent to protect reputation)
 
 </details>
 
@@ -158,7 +180,32 @@ All personal data is automatically anonymized before storage and in email notifi
 ## 📝 Changelog
 
 <details>
-<summary><strong>Version 1.3.0 (2025-11-21)</strong> - Latest Release</summary>
+<summary><strong>Version 1.4.0 (2025-11-24)</strong> - Latest Release</summary>
+
+### ✨ New Features
+- **Email Reputation Protection System**
+  - Maximum registration age threshold to identify "risky" legacy accounts
+  - Silent deletion mode for legacy accounts (no email sent)
+  - Safety quarantine option to ignore old accounts without deletion
+  - Intelligent filtering excludes legacy accounts from reminder workflow
+- **Enhanced Admin Notifications**
+  - Separate notification emails for legacy account deletions
+  - Detailed reporting with age threshold and protection rationale
+
+### 🔧 Technical Changes
+- New configuration option: `auto_delete_unconfirmed_users_max_registration_age`
+- New configuration option: `auto_delete_unconfirmed_users_delete_legacy`
+- Extended `UnconfirmedUserService` with legacy account handling
+- New method in `DSRUnconfirmedUserMailService` for legacy deletion notifications
+- Updated language files (EN/DE) with reputation protection terminology
+
+### 📦 Release
+- [Full Changelog v1.4.0](CHANGELOG_1.4.0_EN.md)
+
+</details>
+
+<details>
+<summary><strong>Version 1.3.0 (2025-11-21)</strong></summary>
 
 ### ✨ New Features
 - Two-stage deletion workflow with optional reminder emails

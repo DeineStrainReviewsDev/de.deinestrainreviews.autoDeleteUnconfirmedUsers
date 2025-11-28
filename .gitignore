@@ -3,6 +3,9 @@
 !README*.md
 !LICENSE.md
 
+# Ignore documentation folders
+docs/
+
 # Ignore development and configuration files
 composer.json
 composer.lock

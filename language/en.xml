@@ -14,6 +14,10 @@
 			<item name="wcf.acp.option.auto_delete_unconfirmed_users_send_email_resent.description"><![CDATA[If this option is enabled, administrators will be notified via email when reminder activation emails are sent to unconfirmed users.]]></item>
 			<item name="wcf.acp.option.auto_delete_unconfirmed_users_send_email_deleted"><![CDATA[Email notification when deleting users]]></item>
 			<item name="wcf.acp.option.auto_delete_unconfirmed_users_send_email_deleted.description"><![CDATA[If this option is enabled, administrators will be notified via email when unconfirmed users are automatically deleted.]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_max_registration_age"><![CDATA[Maximum age for email sending (Reputation Protection)]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_max_registration_age.description"><![CDATA[Defines the maximum age (in days) for user accounts that should receive reminder emails. Users registered longer ago than this threshold are considered "Legacy Accounts" and are risky to email (risk of bounces/spam traps). Set to 0 to disable this protection and process all users normally.<br><br><strong>Recommended:</strong> 365 days (1 year) to prevent sending emails to very old, potentially invalid email addresses that could harm your server's email reputation.]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_delete_legacy"><![CDATA[Silent deletion of Legacy Accounts]]></item>
+			<item name="wcf.acp.option.auto_delete_unconfirmed_users_delete_legacy.description"><![CDATA[<strong style="color: #d32f2f;">⚠️ Warning:</strong> If enabled, Legacy Accounts (older than the maximum age) will be <strong>deleted silently without any email notification</strong>. This prevents bounces and protects your server's email reputation.<br><br>If disabled, Legacy Accounts will be <strong>ignored</strong> (safety quarantine) and only recent users will be processed.<br><br><strong>Use with caution:</strong> Users will receive no warning before deletion.]]></item>
 		</category>
 		<category name="wcf.acp.group">
 			<item name="wcf.acp.group.option.admin.user.canViewDeletedUnconfirmedUsersLog"><![CDATA[Can view logs for unconfirmed users]]></item>
@@ -21,6 +25,7 @@
 		</category>
 		<category name="wcf.acp.menu">
 			<item name="wcf.acp.menu.link.resentActivationEmailLog"><![CDATA[Resent Activation Emails]]></item>
+			<item name="wcf.acp.menu.link.legacyAccountLog"><![CDATA[Legacy Accounts (Quarantine)]]></item>
 			<item name="wcf.acp.menu.link.deletedUnconfirmedUsersLog"><![CDATA[Deleted Unconfirmed Users]]></item>
 		</category>
 		<category name="wcf.acp.resentActivationEmailLog">
@@ -33,6 +38,21 @@
 			<item name="wcf.acp.resentActivationEmailLog.email"><![CDATA[Email]]></item>
 			<item name="wcf.acp.resentActivationEmailLog.username"><![CDATA[Username]]></item>
 		</category>
+		<category name="wcf.acp.legacyAccountLog">
+			<item name="wcf.acp.legacyAccountLog.title"><![CDATA[Legacy Accounts (Quarantine)]]></item>
+			<item name="wcf.acp.legacyAccountLog.description"><![CDATA[These unconfirmed users are older than <strong>{#$maxAge} days</strong> and are <strong>quarantined</strong> to protect your email reputation. They will <strong>not receive reminder emails</strong>. You can manually delete them here.]]></item>
+			<item name="wcf.acp.legacyAccountLog.noEntries"><![CDATA[No legacy accounts found. All unconfirmed users are within the configured age threshold.]]></item>
+			<item name="wcf.acp.legacyAccountLog.userID"><![CDATA[User ID]]></item>
+			<item name="wcf.acp.legacyAccountLog.userID.click"><![CDATA[Click to copy the User ID]]></item>
+			<item name="wcf.acp.legacyAccountLog.userID.copied"><![CDATA[User ID copied to clipboard]]></item>
+			<item name="wcf.acp.legacyAccountLog.registrationDate"><![CDATA[Registration Date]]></item>
+			<item name="wcf.acp.legacyAccountLog.detectionDate"><![CDATA[Detection Date]]></item>
+			<item name="wcf.acp.legacyAccountLog.email"><![CDATA[Email]]></item>
+			<item name="wcf.acp.legacyAccountLog.username"><![CDATA[Username]]></item>
+			<item name="wcf.acp.legacyAccountLog.button.deleteSelected"><![CDATA[Delete Selected Users]]></item>
+			<item name="wcf.acp.legacyAccountLog.deleteSuccess"><![CDATA[{#$count} {if $count == 1}user has{else}users have{/if} been successfully deleted.]]></item>
+			<item name="wcf.acp.legacyAccountLog.deleteFailed"><![CDATA[{#$count} {if $count == 1}user{else}users{/if} could not be deleted.]]></item>
+		</category>
 		<category name="wcf.acp.deletedUnconfirmedUsersLog">
 			<item name="wcf.acp.deletedUnconfirmedUsersLog.title"><![CDATA[Deleted Unconfirmed Users log]]></item>
 			<item name="wcf.acp.deletedUnconfirmedUsersLog.noEntries"><![CDATA[No unconfirmed users (email confirmation) have been automatically deleted yet.]]></item>
@@ -43,10 +63,26 @@
 			<item name="wcf.acp.deletedUnconfirmedUsersLog.registrationDate"><![CDATA[Registration Date]]></item>
 			<item name="wcf.acp.deletedUnconfirmedUsersLog.email"><![CDATA[Email]]></item>
 			<item name="wcf.acp.deletedUnconfirmedUsersLog.username"><![CDATA[Username]]></item>
+			<item name="wcf.acp.deletedUnconfirmedUsersLog.deletionType"><![CDATA[Deletion Type]]></item>
+			<item name="wcf.acp.deletedUnconfirmedUsersLog.deletionType.automatic"><![CDATA[Automatic]]></item>
+			<item name="wcf.acp.deletedUnconfirmedUsersLog.deletionType.automatic.tooltip"><![CDATA[The user was automatically deleted by the system (e.g., via cronjob after activation period expired).]]></item>
+			<item name="wcf.acp.deletedUnconfirmedUsersLog.deletionType.manual"><![CDATA[Manual]]></item>
+			<item name="wcf.acp.deletedUnconfirmedUsersLog.deletionType.manual.tooltip"><![CDATA[The user was manually deleted by an administrator via the "Legacy Accounts (Quarantine)" section in the ACP.]]></item>
+			<item name="wcf.acp.deletedUnconfirmedUsersLog.deletionType.silent"><![CDATA[Silent Deletion]]></item>
+			<item name="wcf.acp.deletedUnconfirmedUsersLog.deletionType.silent.tooltip"><![CDATA[The user was automatically deleted silently (legacy account older than configured threshold). No email notification was sent to protect email reputation.]]></item>
+			<item name="wcf.acp.deletedUnconfirmedUsersLog.deletionType.notAvailable"><![CDATA[Not available]]></item>
+			<item name="wcf.acp.deletedUnconfirmedUsersLog.deletionType.notAvailable.tooltip"><![CDATA[This feature is available since version 1.4.0. This entry was created before.]]></item>
+		</category>
+		<category name="wcf.clipboard">
+			<item name="wcf.clipboard.label.de.deinestrainreviews.legacyAccount.marked"><![CDATA[{if $count == 1}1 legacy account{else}{#$count} legacy accounts{/if} marked]]></item>
+			<item name="wcf.clipboard.item.de.deinestrainreviews.legacyAccount.delete"><![CDATA[Delete]]></item>
+			<item name="wcf.clipboard.item.de.deinestrainreviews.legacyAccount.delete.confirmMessage"><![CDATA[Do you really want to delete {if $count == 1}1 legacy account{else}{#$count} legacy accounts{/if}?]]></item>
 		</category>
 		<category name="wcf.acp.notification">
 			<item name="wcf.acp.notification.deletedUnconfirmedUsers.subject"><![CDATA[{$count} unconfirmed user(s) deleted]]></item>
 			<item name="wcf.acp.notification.deletedUnconfirmedUsers.message"><![CDATA[Hello {$username},<br><br>{$count} unconfirmed user(s) have been automatically deleted from the system.<br><br>{@$userList}<br><br>You can view further details in the <a href="{$logPageUrl}">ACP log page</a>.]]></item>
+			<item name="wcf.acp.notification.deletedLegacyUsers.subject"><![CDATA[{$count} Legacy Account(s) silently deleted (Reputation Protection)]]></item>
+			<item name="wcf.acp.notification.deletedLegacyUsers.message"><![CDATA[Hello {$username},<br><br>{$count} Legacy Account(s) have been <strong>silently deleted</strong> to protect your server's email reputation.<br><br><strong>Note:</strong> These users registered more than {$maxAge} days ago and received <strong>no email notification</strong> before deletion to prevent bounces and spam trap risks.<br><br>{@$userList}<br><br>You can view further details in the <a href="{$logPageUrl}">ACP log page</a>.]]></item>
 			<item name="wcf.acp.notification.resentActivationEmails.subject"><![CDATA[{$count} reminder email(s) sent to unconfirmed users]]></item>
 			<item name="wcf.acp.notification.resentActivationEmails.message"><![CDATA[Hello {$username},<br><br>{$count} reminder email(s) for activation have been automatically sent to unconfirmed users.<br><br>{@$userList}<br><br>You can view further details in the <a href="{$logPageUrl}">ACP log page</a>.]]></item>
 		</category>
