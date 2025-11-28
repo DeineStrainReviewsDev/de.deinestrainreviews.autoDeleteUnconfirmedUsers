@@ -5,7 +5,7 @@
 A WoltLab plugin that automatically deletes unconfirmed users after a configurable period. Features a two-stage deletion workflow with optional reminder emails and comprehensive logging.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![WoltLab Plugin Store](https://img.shields.io/badge/WoltLab-Plugin%20Store-orange)](https://www.woltlab.com/)
+[![WoltLab Plugin Store](https://img.shields.io/badge/WoltLab-Plugin%20Store-orange)](https://www.woltlab.com/pluginstore/file/8094-automatic-deletion-of-unconfirmed-users-email-verification/)
 
 ## 🚀 Current Version: 1.4.0
 

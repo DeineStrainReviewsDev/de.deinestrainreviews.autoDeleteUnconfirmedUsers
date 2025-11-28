@@ -5,7 +5,7 @@
 Ein WoltLab-Plugin zur automatischen Löschung von Benutzern, die ihre E-Mail-Adresse nicht innerhalb einer festgelegten Zeit bestätigt haben. Mit zweistufigem Löschprozess, optionalen Erinnerungs-E-Mails und umfassender Protokollierung.
 
 [![Lizenz: GPL v3](https://img.shields.io/badge/Lizenz-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![WoltLab Plugin Store](https://img.shields.io/badge/WoltLab-Plugin%20Store-orange)](https://www.woltlab.com/)
+[![WoltLab Plugin Store](https://img.shields.io/badge/WoltLab-Plugin%20Store-orange)](https://www.woltlab.com/pluginstore/file/8093-automatische-löschung-unbestätigter-benutzer-e-mail-bestätigung/)
 
 ## 🚀 Aktuelle Version: 1.4.0
 
