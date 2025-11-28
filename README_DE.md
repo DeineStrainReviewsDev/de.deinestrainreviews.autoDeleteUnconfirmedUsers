@@ -54,6 +54,8 @@ Ein WoltLab-Plugin zur automatischen Löschung von Benutzern, die ihre E-Mail-Ad
 - Sicherheitsquarantäne-Option (alte Konten ignorieren)
 - Separate Admin-Benachrichtigungen für Legacy-Löschungen
 - Automatische Filterung riskanter Konten aus dem Erinnerungs-Workflow
+- Legacy-Konten-Log-Seite zur Verwaltung alter Konten
+- Massenlöschaktionen über Zwischenablage
 
 </details>
 
@@ -130,6 +132,14 @@ Zeigt alle gelöschten Benutzer mit:
 - Anonymisierte E-Mail
 - Registrierungsdatum
 - Löschdatum
+- Löschtyp (Automatisch/Still)
+
+**Such- & Filterfunktionen (v1.4.0+):**
+- Filter nach Benutzername (Teilübereinstimmung)
+- Filter nach E-Mail (Teilübereinstimmung)
+- Filter nach Benutzer-ID
+- Filter nach Löschtyp (Automatisch/Still)
+- Sortierbare Spalten mit persistenten Filtern
 
 ### Log erneut versendeter Aktivierungs-E-Mails
 **Ort:** ACP → Benutzer → Erneut versendete Aktivierungs-E-Mails
@@ -140,6 +150,29 @@ Zeigt alle versendeten Erinnerungs-E-Mails mit:
 - Anonymisierte E-Mail
 - Registrierungsdatum
 - Versanddatum
+
+**Such- & Filterfunktionen (v1.4.0+):**
+- Filter nach Benutzername (Teilübereinstimmung)
+- Filter nach Benutzer-ID
+- Sortierbare Spalten mit persistenten Filtern
+
+### Legacy-Konten-Log ⭐ NEU (v1.4.0+)
+**Ort:** ACP → Benutzer → Legacy-Konten-Log
+
+Zeigt alle erkannten Legacy-Konten (alte unbestätigte Benutzer) mit:
+- Benutzer-ID (anklickbar zum Kopieren)
+- Benutzername
+- E-Mail
+- Registrierungsdatum
+- Erkennungsdatum (wann als Legacy identifiziert)
+
+**Funktionen:**
+- Filter nach Benutzer-ID
+- Filter nach Registrierungsdatum (Zeitraum)
+- Filter nach Erkennungsdatum (Zeitraum)
+- Massenlöschung über Zwischenablage-Aktionen
+- Sortierbare Spalten mit persistenten Filtern
+- Zeigt nur ausstehende Konten (noch nicht gelöscht)
 
 ### Berechtigungen
 Berechtigungen setzen unter:
@@ -198,6 +231,12 @@ Alle personenbezogenen Daten werden automatisch vor der Speicherung und in E-Mai
 - Erweiterter `UnconfirmedUserService` mit Legacy-Konten-Verarbeitung
 - Neue Methode in `DSRUnconfirmedUserMailService` für Legacy-Löschbenachrichtigungen
 - Aktualisierte Sprachdateien (EN/DE) mit Reputationsschutz-Terminologie
+- Neuer `LegacyAccountService` für Legacy-Konten-Operationen
+- Neue `DSRGdprAnonymizer` Utility-Klasse für DSGVO-konforme Datenanonymisierung
+- Refactoring der Cronjob-Architektur mit service-orientiertem Design
+- Such- und Filterfunktionen für alle ACP-Log-Seiten hinzugefügt
+- Neue `LegacyAccountLog` Datenbanktabelle und Datenklassen
+- Template-basiertes E-Mail-System für bessere Wartbarkeit
 
 ### 📦 Release
 - [Vollständiger Changelog v1.4.0](CHANGELOG_1.4.0_DE.md)

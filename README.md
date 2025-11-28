@@ -54,6 +54,8 @@ A WoltLab plugin that automatically deletes unconfirmed users after a configurab
 - Safety quarantine option (ignore old accounts)
 - Separate admin notifications for legacy deletions
 - Automatic filtering of risky accounts from reminder workflow
+- Legacy Account Log page for managing old accounts
+- Bulk deletion actions via clipboard
 
 </details>
 
@@ -130,6 +132,14 @@ View all deleted users with:
 - Anonymized email
 - Registration date
 - Deletion date
+- Deletion type (Automatic/Silent)
+
+**Search & Filter Features (v1.4.0+):**
+- Filter by username (partial match)
+- Filter by email (partial match)
+- Filter by user ID
+- Filter by deletion type (Automatic/Silent)
+- Sortable columns with persistent filters
 
 ### Resent Activation Emails Log
 **Location:** ACP → Users → Resent Activation Emails
@@ -140,6 +150,29 @@ View all sent reminder emails with:
 - Anonymized email
 - Registration date
 - Resend date
+
+**Search & Filter Features (v1.4.0+):**
+- Filter by username (partial match)
+- Filter by user ID
+- Sortable columns with persistent filters
+
+### Legacy Account Log ⭐ NEW (v1.4.0+)
+**Location:** ACP → Users → Legacy Account Log
+
+View all detected legacy accounts (old unconfirmed users) with:
+- User ID (clickable to copy)
+- Username
+- Email
+- Registration date
+- Detection date (when identified as legacy)
+
+**Features:**
+- Filter by user ID
+- Filter by registration date range
+- Filter by detection date range
+- Bulk deletion via clipboard actions
+- Sortable columns with persistent filters
+- Shows only pending accounts (not yet deleted)
 
 ### Permissions
 Set viewing permissions under:
@@ -198,6 +231,12 @@ All personal data is automatically anonymized before storage and in email notifi
 - Extended `UnconfirmedUserService` with legacy account handling
 - New method in `DSRUnconfirmedUserMailService` for legacy deletion notifications
 - Updated language files (EN/DE) with reputation protection terminology
+- New `LegacyAccountService` for handling legacy account operations
+- New `DSRGdprAnonymizer` utility class for GDPR-compliant data anonymization
+- Refactored cronjob architecture with service-oriented design
+- Added search and filter functionality to all ACP log pages
+- New `LegacyAccountLog` database table and data classes
+- Template-based email system for better maintainability
 
 ### 📦 Release
 - [Full Changelog v1.4.0](CHANGELOG_1.4.0_EN.md)
