@@ -2,59 +2,55 @@
 
 namespace wcf\acp\page;
 
-use wcf\data\resentActivationEmailLog\ResentActivationEmailLogList;
+use wcf\data\legacyAccountLog\LegacyAccountLogList;
 use wcf\page\SortablePage;
+use wcf\system\clipboard\ClipboardHandler;
 use wcf\system\WCF;
 use wcf\util\StringUtil;
 
 /**
- * Shows the log of resent activation emails.
- * * @author DeineStrainReviews.de Development Team
+ * Shows the log of legacy accounts (quarantined unconfirmed users).
+ *
+ * @author DeineStrainReviews.de Development Team
  * @copyright 2025 DeineStrainReviews.de
  * @license https://www.gnu.org/licenses/gpl-3.0.txt
- * * @property ResentActivationEmailLogList $objectList
  */
-class ResentActivationEmailLogPage extends SortablePage {
+class LegacyAccountLogPage extends SortablePage {
     /**
      * @inheritDoc
      */
-    public $activeMenuItem = 'wcf.acp.menu.link.resentActivationEmailLog';
-    
+    public $activeMenuItem = 'wcf.acp.menu.link.legacyAccountLog';
+
     /**
      * @inheritDoc
      */
     public $neededPermissions = ['admin.user.canViewDeletedUnconfirmedUsersLog'];
-    
+
     /**
      * @inheritDoc
      */
-    public $itemsPerPage = 30;
-    
+    public $objectListClassName = LegacyAccountLogList::class;
+
     /**
      * @inheritDoc
      */
-    public $defaultSortField = 'logID';
-    
+    public $defaultSortField = 'detectionDate';
+
     /**
      * @inheritDoc
      */
     public $defaultSortOrder = 'DESC';
-    
+
     /**
      * @inheritDoc
      */
-    public $validSortFields = ['logID', 'userID', 'registrationDate', 'resendEmailDate'];
-    
+    public $validSortFields = ['logID', 'userID', 'registrationDate', 'detectionDate', 'status'];
+
     /**
      * @inheritDoc
      */
-    public $objectListClassName = ResentActivationEmailLogList::class;
-    
-    /**
-     * @inheritDoc
-     */
-    public $templateName = 'resentActivationEmailLog';
-    
+    public $itemsPerPage = 30;
+
     /**
      * @var array
      */
@@ -62,17 +58,17 @@ class ResentActivationEmailLogPage extends SortablePage {
         'userID' => null,
         'registrationFromDate' => null,
         'registrationToDate' => null,
-        'resendFromDate' => null,
-        'resendToDate' => null,
+        'detectionFromDate' => null,
+        'detectionToDate' => null,
     ];
-    
+
     /**
      * @inheritDoc
      */
     public function readParameters()
     {
         parent::readParameters();
-        
+
         if (isset($_REQUEST['filter']) && \is_array($_REQUEST['filter'])) {
             foreach ($_REQUEST['filter'] as $key => $value) {
                 if (\array_key_exists($key, $this->filter)) {
@@ -81,18 +77,21 @@ class ResentActivationEmailLogPage extends SortablePage {
             }
         }
     }
-    
+
     /**
      * @inheritDoc
      */
     protected function initObjectList()
     {
         parent::initObjectList();
-        
+
+        // Only show pending legacy accounts (not yet deleted)
+        $this->objectList->getConditionBuilder()->add('legacy_account_log.status = ?', ['pending']);
+
         if (!empty($this->filter['userID'])) {
-            $this->objectList->getConditionBuilder()->add('resent_activation_email_log.userID = ?', [(int)$this->filter['userID']]);
+            $this->objectList->getConditionBuilder()->add('legacy_account_log.userID = ?', [(int)$this->filter['userID']]);
         }
-        
+
         $timeZone = WCF::getUser()->getTimeZone();
 
         // Filter by registration date
@@ -101,71 +100,75 @@ class ResentActivationEmailLogPage extends SortablePage {
             try {
                 $registrationFromDate = (new \DateTimeImmutable($this->filter['registrationFromDate'], $timeZone))->getTimestamp();
             } catch (\Exception $e) {
-                // ignore
+                // ignore invalid date
             }
         }
         if (!empty($this->filter['registrationToDate'])) {
             try {
                 $registrationToDate = (new \DateTimeImmutable($this->filter['registrationToDate'], $timeZone))->setTime(23, 59, 59)->getTimestamp();
             } catch (\Exception $e) {
-                // ignore
+                // ignore invalid date
             }
         }
-        
+
         if ($registrationFromDate && $registrationToDate) {
-            $this->objectList->getConditionBuilder()->add('resent_activation_email_log.registrationDate BETWEEN ? AND ?', [
+            $this->objectList->getConditionBuilder()->add('legacy_account_log.registrationDate BETWEEN ? AND ?', [
                 $registrationFromDate,
                 $registrationToDate,
             ]);
         } else {
             if ($registrationFromDate) {
-                $this->objectList->getConditionBuilder()->add('resent_activation_email_log.registrationDate >= ?', [$registrationFromDate]);
+                $this->objectList->getConditionBuilder()->add('legacy_account_log.registrationDate >= ?', [$registrationFromDate]);
             }
             if ($registrationToDate) {
-                $this->objectList->getConditionBuilder()->add('resent_activation_email_log.registrationDate <= ?', [$registrationToDate]);
+                $this->objectList->getConditionBuilder()->add('legacy_account_log.registrationDate <= ?', [$registrationToDate]);
             }
         }
-        
-        // Filter by resend email date
-        $resendFromDate = $resendToDate = 0;
-        if (!empty($this->filter['resendFromDate'])) {
+
+        // Filter by detection date
+        $detectionFromDate = $detectionToDate = 0;
+        if (!empty($this->filter['detectionFromDate'])) {
             try {
-                $resendFromDate = (new \DateTimeImmutable($this->filter['resendFromDate'], $timeZone))->getTimestamp();
+                $detectionFromDate = (new \DateTimeImmutable($this->filter['detectionFromDate'], $timeZone))->getTimestamp();
             } catch (\Exception $e) {
-                // ignore
+                // ignore invalid date
             }
         }
-        if (!empty($this->filter['resendToDate'])) {
+        if (!empty($this->filter['detectionToDate'])) {
             try {
-                $resendToDate = (new \DateTimeImmutable($this->filter['resendToDate'], $timeZone))->setTime(23, 59, 59)->getTimestamp();
+                $detectionToDate = (new \DateTimeImmutable($this->filter['detectionToDate'], $timeZone))->setTime(23, 59, 59)->getTimestamp();
             } catch (\Exception $e) {
-                // ignore
+                // ignore invalid date
             }
         }
-        
-        if ($resendFromDate && $resendToDate) {
-            $this->objectList->getConditionBuilder()->add('resent_activation_email_log.resendEmailDate BETWEEN ? AND ?', [
-                $resendFromDate,
-                $resendToDate,
+
+        if ($detectionFromDate && $detectionToDate) {
+            $this->objectList->getConditionBuilder()->add('legacy_account_log.detectionDate BETWEEN ? AND ?', [
+                $detectionFromDate,
+                $detectionToDate,
             ]);
         } else {
-            if ($resendFromDate) {
-                $this->objectList->getConditionBuilder()->add('resent_activation_email_log.resendEmailDate >= ?', [$resendFromDate]);
+            if ($detectionFromDate) {
+                $this->objectList->getConditionBuilder()->add('legacy_account_log.detectionDate >= ?', [$detectionFromDate]);
             }
-            if ($resendToDate) {
-                $this->objectList->getConditionBuilder()->add('resent_activation_email_log.resendEmailDate <= ?', [$resendToDate]);
+            if ($detectionToDate) {
+                $this->objectList->getConditionBuilder()->add('legacy_account_log.detectionDate <= ?', [$detectionToDate]);
             }
         }
     }
-    
+
     /**
      * @inheritDoc
      */
     public function assignVariables()
     {
         parent::assignVariables();
-        
+
         WCF::getTPL()->assign([
+            'maxAge' => (int) AUTO_DELETE_UNCONFIRMED_USERS_MAX_REGISTRATION_AGE,
+            'hasMarkedItems' => ClipboardHandler::getInstance()->hasMarkedItems(
+                ClipboardHandler::getInstance()->getObjectTypeID('de.deinestrainreviews.legacyAccount')
+            ),
             'filter' => $this->filter,
             'filterParameter' => \http_build_query(['filter' => $this->filter], '', '&'),
         ]);

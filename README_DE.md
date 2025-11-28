@@ -7,10 +7,12 @@ Ein WoltLab-Plugin zur automatischen Löschung von Benutzern, die ihre E-Mail-Ad
 [![Lizenz: GPL v3](https://img.shields.io/badge/Lizenz-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![WoltLab Plugin Store](https://img.shields.io/badge/WoltLab-Plugin%20Store-orange)](https://www.woltlab.com/)
 
-## 🚀 Aktuelle Version: 1.3.0
+## 🚀 Aktuelle Version: 1.4.0
 
 ### Hauptfunktionen
 
+- ✅ **E-Mail-Reputationsschutz** - NEU in v1.4.0: Schützen Sie Ihren Server vor Bounces und Spam-Fallen
+- ✅ **Stille Legacy-Löschung** - Automatische Bereinigung alter "Geisterkonten" ohne Gefährdung der E-Mail-Reputation
 - ✅ **Zweistufiger Löschprozess** - Optionale Erinnerungs-E-Mail vor der Löschung
 - ✅ **Umfassende Protokollierung** - Nachverfolgung gelöschter Benutzer und versendeter Erinnerungen
 - ✅ **DSGVO-konform** - Automatische Datenanonymisierung
@@ -46,6 +48,15 @@ Ein WoltLab-Plugin zur automatischen Löschung von Benutzern, die ihre E-Mail-Ad
 - Intelligente Kontaktformular-Erkennung
 - Professionelle HTML-E-Mail-Templates
 
+### E-Mail-Reputationsschutz (v1.4.0+)
+- Konfigurierbarer maximaler Altersschwellenwert für E-Mail-Versand
+- Stiller Löschmodus für Legacy-Konten (keine E-Mail gesendet)
+- Sicherheitsquarantäne-Option (alte Konten ignorieren)
+- Separate Admin-Benachrichtigungen für Legacy-Löschungen
+- Automatische Filterung riskanter Konten aus dem Erinnerungs-Workflow
+- Legacy-Konten-Log-Seite zur Verwaltung alter Konten
+- Massenlöschaktionen über Zwischenablage
+
 </details>
 
 ## 📦 Installation
@@ -70,6 +81,8 @@ Ein WoltLab-Plugin zur automatischen Löschung von Benutzern, die ihre E-Mail-Ad
 | **Benutzer pro Cronjob-Ausführung** | Maximale Anzahl verarbeiteter Benutzer pro Durchlauf (max. 50) | 10 |
 | **E-Mail-Benachrichtigung (Erinnerungen)** | Benachrichtigt Admins beim Versand von Erinnerungs-E-Mails | Aktiviert |
 | **E-Mail-Benachrichtigung (Löschungen)** | Benachrichtigt Admins bei gelöschten Benutzern | Aktiviert |
+| **Maximales Alter für E-Mail-Versand** ⭐ NEU | Maximales Alter (Tage) für Konten, die E-Mails erhalten (0 = deaktiviert) | 0 |
+| **Stille Löschung von Legacy-Konten** ⭐ NEU | Löscht alte Konten ohne E-Mail zum Reputationsschutz | Deaktiviert |
 
 <details>
 <summary><strong>🔧 Konfigurationsbeispiele</strong></summary>
@@ -95,6 +108,17 @@ Tage bis zur Löschung: 14
 ```
 **Ergebnis:** Benutzer registriert sich → Nach 14 Tagen: Erinnerungs-E-Mail → Nach weiteren 14 Tagen (gesamt 28): Löschung
 
+### Beispiel 4: Mit Reputationsschutz (v1.4.0+) 🛡️
+```
+Tage bis zum erneuten Versand der Aktivierungs-E-Mail: 7
+Tage bis zur Löschung: 7
+Maximales Alter für E-Mail-Versand: 365
+Stille Löschung von Legacy-Konten: Aktiviert
+```
+**Ergebnis:**
+- Aktuelle Benutzer (< 365 Tage): Normaler Workflow mit Erinnerung → Löschung nach 14 Tagen
+- Legacy-Benutzer (> 365 Tage): **Stillschweigend gelöscht** sofort (keine E-Mail zum Reputationsschutz)
+
 </details>
 
 ## 📊 Log-Seiten
@@ -108,6 +132,14 @@ Zeigt alle gelöschten Benutzer mit:
 - Anonymisierte E-Mail
 - Registrierungsdatum
 - Löschdatum
+- Löschtyp (Automatisch/Still)
+
+**Such- & Filterfunktionen (v1.4.0+):**
+- Filter nach Benutzername (Teilübereinstimmung)
+- Filter nach E-Mail (Teilübereinstimmung)
+- Filter nach Benutzer-ID
+- Filter nach Löschtyp (Automatisch/Still)
+- Sortierbare Spalten mit persistenten Filtern
 
 ### Log erneut versendeter Aktivierungs-E-Mails
 **Ort:** ACP → Benutzer → Erneut versendete Aktivierungs-E-Mails
@@ -118,6 +150,29 @@ Zeigt alle versendeten Erinnerungs-E-Mails mit:
 - Anonymisierte E-Mail
 - Registrierungsdatum
 - Versanddatum
+
+**Such- & Filterfunktionen (v1.4.0+):**
+- Filter nach Benutzername (Teilübereinstimmung)
+- Filter nach Benutzer-ID
+- Sortierbare Spalten mit persistenten Filtern
+
+### Legacy-Konten-Log ⭐ NEU (v1.4.0+)
+**Ort:** ACP → Benutzer → Legacy-Konten-Log
+
+Zeigt alle erkannten Legacy-Konten (alte unbestätigte Benutzer) mit:
+- Benutzer-ID (anklickbar zum Kopieren)
+- Benutzername
+- E-Mail
+- Registrierungsdatum
+- Erkennungsdatum (wann als Legacy identifiziert)
+
+**Funktionen:**
+- Filter nach Benutzer-ID
+- Filter nach Registrierungsdatum (Zeitraum)
+- Filter nach Erkennungsdatum (Zeitraum)
+- Massenlöschung über Zwischenablage-Aktionen
+- Sortierbare Spalten mit persistenten Filtern
+- Zeigt nur ausstehende Konten (noch nicht gelöscht)
 
 ### Berechtigungen
 Berechtigungen setzen unter:
@@ -158,7 +213,38 @@ Alle personenbezogenen Daten werden automatisch vor der Speicherung und in E-Mai
 ## 📝 Changelog
 
 <details>
-<summary><strong>Version 1.3.0 (2025-11-21)</strong> - Aktuelle Version</summary>
+<summary><strong>Version 1.4.0 (2025-11-24)</strong> - Aktuelle Version</summary>
+
+### ✨ Neue Funktionen
+- **E-Mail-Reputationsschutzsystem**
+  - Maximaler Registrierungsalter-Schwellenwert zur Identifizierung „riskanter" Legacy-Konten
+  - Stiller Löschmodus für Legacy-Konten (keine E-Mail gesendet)
+  - Sicherheitsquarantäne-Option zum Ignorieren alter Konten ohne Löschung
+  - Intelligente Filterung schließt Legacy-Konten vom Erinnerungs-Workflow aus
+- **Erweiterte Admin-Benachrichtigungen**
+  - Separate Benachrichtigungs-E-Mails für Legacy-Kontolöschungen
+  - Detaillierte Berichterstattung mit Altersschwelle und Schutzgründen
+
+### 🔧 Technische Änderungen
+- Neue Konfigurationsoption: `auto_delete_unconfirmed_users_max_registration_age`
+- Neue Konfigurationsoption: `auto_delete_unconfirmed_users_delete_legacy`
+- Erweiterter `UnconfirmedUserService` mit Legacy-Konten-Verarbeitung
+- Neue Methode in `DSRUnconfirmedUserMailService` für Legacy-Löschbenachrichtigungen
+- Aktualisierte Sprachdateien (EN/DE) mit Reputationsschutz-Terminologie
+- Neuer `LegacyAccountService` für Legacy-Konten-Operationen
+- Neue `DSRGdprAnonymizer` Utility-Klasse für DSGVO-konforme Datenanonymisierung
+- Refactoring der Cronjob-Architektur mit service-orientiertem Design
+- Such- und Filterfunktionen für alle ACP-Log-Seiten hinzugefügt
+- Neue `LegacyAccountLog` Datenbanktabelle und Datenklassen
+- Template-basiertes E-Mail-System für bessere Wartbarkeit
+
+### 📦 Release
+- [Vollständiger Changelog v1.4.0](CHANGELOG_1.4.0_DE.md)
+
+</details>
+
+<details>
+<summary><strong>Version 1.3.0 (2025-11-21)</strong></summary>
 
 ### ✨ Neue Funktionen
 - Zweistufiger Löschprozess mit optionalen Erinnerungs-E-Mails

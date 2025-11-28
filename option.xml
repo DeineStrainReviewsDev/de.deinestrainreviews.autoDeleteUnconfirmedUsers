@@ -11,6 +11,7 @@
 					auto_delete_unconfirmed_users_limit,
 					auto_delete_unconfirmed_users_send_email_resent,
 					auto_delete_unconfirmed_users_send_email_deleted,
+					auto_delete_unconfirmed_users_max_registration_age,
 					auto_delete_unconfirmed_users_log</enableoptions>
 				<showorder>5</showorder>
 			</option>
@@ -54,6 +55,23 @@
 				<optiontype>boolean</optiontype>
 				<defaultvalue>1</defaultvalue>
 				<showorder>10</showorder>
+			</option>
+			<option name="auto_delete_unconfirmed_users_max_registration_age">
+				<categoryname>user.register</categoryname>
+				<optiontype>integer</optiontype>
+				<defaultvalue>0</defaultvalue>
+				<validationpattern>^[0-9]+$</validationpattern>
+				<showorder>11</showorder>
+				<minvalue>0</minvalue>
+				<maxvalue>730</maxvalue>
+				<disableAutocomplete>1</disableAutocomplete>
+				<enableoptions>auto_delete_unconfirmed_users_delete_legacy</enableoptions>
+			</option>
+			<option name="auto_delete_unconfirmed_users_delete_legacy">
+				<categoryname>user.register</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>0</defaultvalue>
+				<showorder>12</showorder>
 			</option>
 		</options>
 	</import>

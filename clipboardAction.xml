@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/6.0/clipboardAction.xsd">
+	<import>
+		<!-- Clipboard action for deleting legacy accounts from Legacy Account Log Page -->
+		<action name="delete">
+			<actionclassname>wcf\system\clipboard\action\LegacyAccountClipboardAction</actionclassname>
+			<showorder>1</showorder>
+			<pages>
+				<page>wcf\acp\page\LegacyAccountLogPage</page>
+			</pages>
+		</action>
+	</import>
+</data>

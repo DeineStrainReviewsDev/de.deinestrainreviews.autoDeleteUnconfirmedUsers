@@ -5,10 +5,16 @@ use wcf\system\database\table\column\NotNullInt10DatabaseTableColumn;
 use wcf\system\database\table\index\DatabaseTableIndex;
 use wcf\system\database\table\index\DatabaseTablePrimaryIndex;
 
-// Update from 1.2.0 to 1.3.0
-// Version 1.2.0 had only: wcf1_deleted_unconfirmed_user_log
-// Version 1.3.0 adds: wcf1_resent_activation_email_log (new feature)
-// No migration needed as resend feature is new in 1.3.0
+/**
+ * Database update script from version 1.2.0 to 1.3.0.
+ * 
+ * Adds the resent activation email log table for the new reminder email feature.
+ * No data migration needed as this is a new feature in 1.3.0.
+ * 
+ * @author DeineStrainReviews.de Development Team
+ * @copyright 2025 DeineStrainReviews.de
+ * @license https://www.gnu.org/licenses/gpl-3.0.txt
+ */
 
 return [
 	// Create new table for resent activation emails (new in 1.3.0)
